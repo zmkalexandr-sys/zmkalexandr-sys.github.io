@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZMK — политика конфиденциальности</title>
+<style>
+ body{margin:0;background:#f7f8f7;color:#1c221c;font:16px/1.65 system-ui,Segoe UI,Roboto,sans-serif}
+ main{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+ h1{font-size:26px;margin:0 0 6px}
+ .upd{color:#5d6b5d;font-size:14px;margin:0 0 28px}
+ h2{font-size:19px;margin:32px 0 8px}
+ ul{padding-left:22px}
+ li{margin:6px 0}
+ .box{background:#fff;border:1px solid #dfe5df;border-radius:10px;padding:16px 18px;margin:18px 0}
+ footer{margin-top:40px;color:#5d6b5d;font-size:14px}
+ .nav{margin:0 0 24px;font-size:14px}
+ .nav a{color:#2f6b3a}
+ hr{border:0;border-top:1px solid #dfe5df;margin:56px 0 40px}
+</style>
+</head>
+<body>
+<main>
+<p class="nav"><a href="#ru">Русский</a> · <a href="#en">English</a></p>
+
+<h1 id="ru">Политика конфиденциальности приложения ZMK</h1>
+<p class="upd">Редакция от 4 октября 2026 года</p>
+
+<div class="box"><strong>Коротко: приложение не собирает никаких данных и ничего никуда не передаёт.</strong>
+У него нет ни серверов, ни учётных записей, ни аналитики, ни рекламы.</div>
+
+<h2>Какие данные приложение хранит</h2>
+<p>Только на самом телефоне, в закрытом хранилище приложения:</p>
+<ul>
+  <li><strong>Код устройства</strong> — набор букв и цифр, который один раз вписывает администратор дома или хозяин устройства. На экране приложения он не показывается. Нужен, чтобы подписать команду открытия.</li>
+  <li><strong>Мастер-код</strong> — только на телефоне владельца, если он вводил его в экране владельца. Нужен, чтобы менять коды в контроллере.</li>
+  <li><strong>Адрес и имя контроллера</strong> — технические метки устройства в эфире Bluetooth. Нужны, чтобы подключаться быстрее и не перепутать ваше устройство с соседним.</li>
+  <li><strong>Названия и типы ваших устройств</strong> — то, что вы сами вписали: «Шлагбаум», «Гараж» и так далее.</li>
+  <li><strong>Выбранный язык интерфейса</strong> — русский, казахский или английский, если вы переключали его вручную.</li>
+  <li><strong>Расписание таймера</strong> — только на телефоне владельца, если он записывал расписание в контроллер. Нужно, чтобы показать его снова и сверить с контроллером.</li>
+</ul>
+<p>Приложение не отправляет эти сведения никуда: у него нет ни одного сетевого запроса. Резервное копирование его данных на Android выключено: они не попадают ни в облачную копию Google, ни в перенос данных на новый телефон. Поэтому после смены Android-телефона или переустановки приложения код вписывается заново. На iPhone данные приложения, как и у любого другого приложения, входят в резервную копию телефона (iCloud или компьютер), если её включил владелец телефона; само приложение их никуда не отправляет. Вместе с удалением приложения сведения с телефона удаляются.</p>
+<p><strong>Ярлыки на значке приложения.</strong> По долгому нажатию на значок телефон показывает команды вроде «Открыть: Шлагбаум». Для этого приложение сообщает системе телефона названия ваших устройств — и только их: кодов в ярлыках нет, и приложение никуда их не отправляет.</p>
+<p><strong>Время телефона.</strong> Вместе с командой приложение сообщает контроллеру текущие дату и время телефона: по ним контроллер ведёт расписание «Таймера». Время уходит только в ваш контроллер по Bluetooth, приложение его не хранит.</p>
+
+<h2>Что приложение НЕ делает</h2>
+<ul>
+  <li>не определяет местоположение и не сохраняет его;</li>
+  <li>не обращается к интернету — в нём нет ни одного сетевого запроса;</li>
+  <li>не собирает сведения об устройстве, контакты, файлы, камеру, микрофон;</li>
+  <li>не показывает рекламу и не содержит счётчиков и аналитики;</li>
+  <li>не передаёт данные третьим лицам, потому что не собирает их.</li>
+</ul>
+
+<h2>Разрешения и зачем они</h2>
+<ul>
+  <li><strong>Поиск устройств поблизости</strong> и <strong>подключение к устройствам Bluetooth</strong> — единственный способ найти контроллер шлагбаума и передать ему команду. Приложение объявляет системе, что не использует поиск Bluetooth для определения местоположения.</li>
+  <li><strong>Доступ к местоположению — только на Android 11 и более старых версиях.</strong> Там система не разделяет поиск Bluetooth и определение местоположения: без такого разрешения телефон не покажет ни одного устройства поблизости. Приложение запрашивает его по требованию системы, но координаты не читает, не показывает и никуда не отправляет. На Android 12 и новее это разрешение не запрашивается вовсе.</li>
+  <li><strong>На iPhone — только доступ к Bluetooth.</strong> Местоположение на iPhone не запрашивается.</li>
+</ul>
+
+<h2>Дети</h2>
+<p>Приложение не предназначено для детей и не обращается к ним. Никаких данных о возрасте оно не собирает.</p>
+
+<h2>Изменения</h2>
+<p>Если политика изменится, новая редакция с новой датой появится на этой странице и в самом приложении.</p>
+
+<h2>Связь</h2>
+<p>Вопросы по приложению и по этой политике: <a href="mailto:zmkalexandr@gmail.com">zmkalexandr@gmail.com</a></p>
+
+
+<hr>
+
+<h1 id="en" lang="en">ZMK Privacy Policy</h1>
+<p class="upd" lang="en">Version of 4 October 2026</p>
+
+<div class="box" lang="en"><strong>In short: the app collects no data and sends nothing anywhere.</strong>
+It has no servers, no accounts, no analytics and no advertising.</div>
+
+<div lang="en">
+<h2>What the app stores</h2>
+<p>On your phone only, in the app's private storage:</p>
+<ul>
+  <li><strong>The device code</strong> — letters and digits entered once by the building administrator or the device owner. The app never shows it on screen. It is used to sign the open command.</li>
+  <li><strong>The master code</strong> — only on the owner's phone, if the owner entered it on the owner screen. It is used to change codes in the controller.</li>
+  <li><strong>The controller's address and name</strong> — technical Bluetooth labels. They let the app connect faster and not confuse your device with a neighbour's.</li>
+  <li><strong>The names and types of your devices</strong> — whatever you typed yourself: "Barrier", "Garage" and so on.</li>
+  <li><strong>The chosen interface language</strong> — Russian, Kazakh or English, if you switched it by hand.</li>
+  <li><strong>The timer schedule</strong> — only on the owner's phone, if the owner wrote a schedule to the controller. It is used to show it again and check it against the controller.</li>
+</ul>
+<p>The app never sends any of this anywhere: it makes no network requests at all. Backup of its data is turned off on Android: it is left out of Google's cloud backup and out of transfers to a new phone. So after changing an Android phone or reinstalling the app, the code is entered again. On iPhone the app’s data, like that of any other app, is included in the phone’s own backup (iCloud or computer) if the phone’s owner has turned it on; the app itself never sends it anywhere. Uninstalling the app removes this data from the phone.</p>
+<p><strong>Shortcuts on the app icon.</strong> A long press on the icon shows commands such as "Open: Barrier". For this the app gives the phone's system the names of your devices, and nothing else: shortcuts contain no codes, and the app sends them nowhere.</p>
+<p><strong>The phone's time.</strong> Along with each command the app tells the controller the phone's current date and time: the controller uses them to run the timer schedule. The time goes only to your controller over Bluetooth; the app does not store it.</p>
+
+<h2>What the app does NOT do</h2>
+<ul>
+  <li>does not determine or store your location;</li>
+  <li>does not use the internet — there is not a single network request in it;</li>
+  <li>does not collect device information, contacts, files, camera or microphone data;</li>
+  <li>shows no advertising and contains no trackers or analytics;</li>
+  <li>does not share data with third parties, because it does not collect any.</li>
+</ul>
+
+<h2>Permissions and why they are needed</h2>
+<ul>
+  <li><strong>Find nearby devices</strong> and <strong>connect to Bluetooth devices</strong> — the only way to find the controller and send it a command. The app declares to the system that it does not use Bluetooth scanning to derive location.</li>
+  <li><strong>Location access — on Android 11 and older only.</strong> There the system does not separate Bluetooth scanning from location: without that permission the phone shows no nearby devices at all. The app requests it because the system requires it, but it never reads, displays or sends coordinates. On Android 12 and newer the permission is not requested at all.</li>
+  <li><strong>On iPhone — Bluetooth access only.</strong> Location is never requested on iPhone.</li>
+</ul>
+
+<h2>Children</h2>
+<p>The app is not intended for children and is not directed at them. It collects no age information.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, the new version with a new date will appear on this page and in the app itself.</p>
+
+<h2>Contact</h2>
+<p>Questions about the app and about this policy: <a href="mailto:zmkalexandr@gmail.com">zmkalexandr@gmail.com</a></p>
+</div>
+
+<footer>ZMK — приложение для открытия шлагбаума, дверей и ворот по Bluetooth.<br>
+<span lang="en">ZMK — an app that opens barriers, doors and gates over Bluetooth.</span></footer>
+</main>
+</body>
+</html>
