@@ -23,6 +23,46 @@ section{padding:66px 0}.section-head{text-align:center;max-width:760px;margin:0 
 @media(max-width:850px){.nav{display:none}.hero{grid-template-columns:1fr;padding:44px 0}.hero-art{min-height:300px}.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:0}.strip div{justify-content:flex-start;padding:12px 18px}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.phone-screens{max-width:520px;margin:24px auto 0}}
 @media(max-width:520px){.wrap{padding:0 17px}header{height:68px}.brand{font-size:25px}.brand small{font-size:9px}.langs button{padding:7px 8px;font-size:11px}.hero h1{font-size:41px}.lead{font-size:17px}.hero-art{padding:15px;min-height:270px}.signal{font-size:11px;top:12px;right:12px}.strip{font-size:13px}.strip b{font-size:19px}.screen{min-height:170px;padding:9px 5px}.screen:nth-child(2){min-height:205px}.screen .circle{width:64px;height:64px;margin:18px auto 8px;font-size:10px}section{padding:48px 0}.card,.feature{padding:21px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* ZMK premium compact layer */
+:root{--bg:#050d17;--panel:#0a1725;--panel2:#102338;--line:#203b52;--green:#b5ff43;--blue:#42c7ff;--muted:#9aafc2}
+body{background:radial-gradient(ellipse at 88% 5%,#12446a55 0,transparent 34%),radial-gradient(ellipse at 8% 42%,#102d4050 0,transparent 32%),var(--bg);letter-spacing:-.012em}
+.wrap{max-width:1080px;padding-left:22px;padding-right:22px}
+header{height:66px;position:sticky;top:0;z-index:50;margin:0 -22px;padding:0 22px;background:#06111de8;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid #a7c7df20}
+.brand{font-size:27px;letter-spacing:1.5px}.brand small{font-size:10px}
+.nav{gap:20px}.nav a{font-size:13px;color:#c5d4e2}
+.langs button{font-size:11px;padding:6px 9px;border-radius:8px}
+.hero{gap:28px;padding:42px 0 34px}.hero h1{font-size:clamp(36px,4.7vw,58px);margin:10px 0 14px;letter-spacing:-2px}
+.eyebrow{font-size:11px;letter-spacing:2.2px}.lead{font-size:17px;line-height:1.55}
+.checks{gap:9px;margin:18px 0 22px}.checks div{font-size:14px;line-height:1.45}.tick{width:21px;height:21px;border-radius:6px;font-size:13px}
+.btn{padding:11px 17px;border-radius:10px;font-size:14px;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.btn.primary{box-shadow:0 7px 24px #a8f43b25}.btn:hover{transform:translateY(-2px);box-shadow:0 9px 28px #0005}
+.hero-art{min-height:310px;border-radius:23px;padding:20px;box-shadow:inset 0 1px #ffffff12,0 20px 55px #0003}
+.hero-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,#ffffff0b,transparent 38%,#44c8ff08)}
+.product-placeholder{max-width:390px;aspect-ratio:1.3;border-color:#54748a88;border-radius:17px;padding:18px}
+.product-placeholder .device-icon{transform:scale(.88);margin-bottom:12px}
+.product-placeholder strong{font-size:18px}.product-placeholder p{font-size:12px;max-width:250px;margin:5px auto 0}
+.signal{top:17px;right:17px;font-size:11px;padding:8px 11px;border-radius:10px}
+.strip{padding:12px 0;background:#081522;border-color:#20394e}
+.strip div{font-size:13px;gap:9px}.strip b{font-size:20px}
+section{padding:48px 0}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.8px}.section-head p{font-size:14px}
+.grid{gap:13px}.card{padding:20px;border-radius:17px;background:linear-gradient(145deg,#10243a99,#0a1725);box-shadow:inset 0 1px #ffffff09}
+.card h3{font-size:18px;margin:11px 0 6px}.card p,.feature p,.step p{font-size:13px;line-height:1.55}
+.icon{width:43px;height:43px;border-radius:12px;font-size:23px}
+.two{gap:14px}.feature{padding:23px;border-radius:18px}.feature h3{font-size:21px}
+.phone-screens{gap:8px;margin-top:18px}.screen{border-radius:15px;min-height:175px}.screen:nth-child(2){min-height:205px}
+.steps{gap:12px}.step{padding:19px;border-radius:15px}.step h3{font-size:16px;margin:6px 0}
+.note{font-size:13px;margin-top:14px;padding:14px 17px}
+.faq details{padding:14px 4px}.faq summary{font-size:14px}.faq p{font-size:13px}
+.cta{padding:32px 22px;border-radius:20px}.cta h2{font-size:clamp(26px,3.5vw,36px)}.cta p{font-size:14px}
+.contacts{font-size:13px}footer{padding:20px 0 28px}
+.card,.feature,.step,.hero-art,.cta{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.card:hover,.feature:hover,.step:hover{border-color:#47718c;transform:translateY(-3px);box-shadow:0 15px 35px #0003}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+@media(max-width:850px){header{margin:0 -22px;padding:0 22px}.hero{padding:32px 0 26px;gap:20px}.hero-art{min-height:275px}.strip div{padding:9px 14px}section{padding:40px 0}}
+@media(max-width:520px){.wrap{padding:0 16px}header{height:60px;margin:0 -16px;padding:0 16px}.brand{font-size:23px}.brand small{font-size:9px}.langs button{padding:6px 7px;font-size:10px}.hero{padding:28px 0 22px;gap:18px}.hero h1{font-size:37px;line-height:1.04}.lead{font-size:15px}.checks div{font-size:13px}.btn{padding:10px 13px;font-size:13px}.hero-art{min-height:245px;padding:13px}.product-placeholder{aspect-ratio:1.25;padding:13px}.signal{top:10px;right:10px;font-size:10px}.strip{font-size:12px}.strip b{font-size:18px}section{padding:36px 0}.section-head{margin-bottom:20px}.card,.feature{padding:18px}.screen{min-height:150px}.screen:nth-child(2){min-height:180px}}
+@media(prefers-reduced-motion:no-preference){.hero-art:before{animation:halo 9s ease-in-out infinite alternate}@keyframes halo{from{transform:translate3d(0,0,0) scale(.92)}to{transform:translate3d(-16px,12px,0) scale(1.08)}}}
+
 </style>
 </head>
 <body><div class="wrap">
