@@ -172,3 +172,12 @@ footer a{color:var(--muted)}
 /* Значок приложения ZMK в шапке вместо надписи */
 .brand-ico{height:46px;width:46px;display:block;border-radius:11px;box-shadow:0 0 0 1px #39ff1440,0 0 12px #39ff1455}
 @media(max-width:600px){.brand-ico{height:40px;width:40px;border-radius:9px}}
+
+/* Ссылка «Инструкция» под фото и фото пульта на странице-инструкции */
+.gal figcaption .howto{display:inline-block;margin-top:4px;color:#39ff14;font-weight:700;text-decoration:none}
+.instr-pic{max-width:420px;background:#fff}
+.instr-pic img{object-fit:contain}
+
+/* Схемы к шагам инструкций */
+.card.stp .sk{grid-column:1/-1;margin-top:10px;background:#0b1626;border-radius:10px;padding:8px}
+.card.stp .sk svg{display:block;width:100%;max-width:300px;height:auto;margin:0 auto}
