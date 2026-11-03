@@ -210,3 +210,16 @@ main.swiping{will-change:transform}
 
 /* Несколько инструкций под одним фото — каждая своей строкой */
 .gal figcaption .howto{display:block}
+
+/* Шапка, вариант А: один зелёный, без неона и рамок */
+.brand-ico{box-shadow:0 0 0 1px #ffffff1a}
+.nav a{color:#c3cfdb}
+.nav a:hover,.nav a.on{color:#fff}
+.langs button{border-color:transparent;color:#8fa1b4}
+.langs button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.gal figcaption .howto{color:#5fd38a}
+@media(max-width:1100px){
+ .nav:not(.open) a{border:0;border-radius:0;padding:8px 10px;background:none}
+ .nav:not(.open) a.on{background:none;color:#fff;box-shadow:inset 0 -2px 0 #2fae55}
+ .nav.open a.on{color:#fff}
+}
