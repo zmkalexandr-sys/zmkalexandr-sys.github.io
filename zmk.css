@@ -204,3 +204,6 @@ details.fold[open]>summary{margin-bottom:12px}
 #peek{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg,#f2f5f8);overflow:hidden;pointer-events:none;will-change:transform;box-shadow:0 0 24px #0003}
 #peek .wrap{padding-top:16px}
 main.swiping{will-change:transform}
+
+/* Кнопка инструкции под «Узнать стоимость» */
+.prod .btn+.btn{margin-top:8px}
