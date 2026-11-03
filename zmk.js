@@ -25,3 +25,14 @@ document.querySelectorAll('a[data-wa]').forEach(a=>{
   a.href='https://wa.me/77072669154?text='+encodeURIComponent(text);
   a.target='_blank'; a.rel='noopener';
 });
+
+/** Лента разделов: отметить текущую страницу и показать её пункт в ленте. */
+(function markCurrent(){
+  const here = location.pathname.split('/').pop() || 'sos.html';
+  const strip = document.getElementById('nav');
+  if (!strip) return;
+  const link = [...strip.querySelectorAll('a')].find(a => a.getAttribute('href').split('#')[0] === here);
+  if (!link) return;
+  link.classList.add('on'); link.setAttribute('aria-current', 'page');
+  strip.scrollLeft = Math.max(0, link.offsetLeft - (strip.clientWidth - link.offsetWidth) / 2);
+})();
