@@ -132,3 +132,8 @@ footer a{color:var(--muted)}
 .shots figure{margin:0;scroll-snap-align:start;text-align:center}
 .shots img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid #c9d5e0}
 .shots figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+@media(min-width:600px){.grid.c5{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.grid.c5{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1200px){.grid.c5{grid-template-columns:repeat(5,1fr)}}
+.grid>*{min-width:0}
+@media(max-width:1100px){.burger{display:grid}.nav{display:none;position:absolute;left:0;right:0;top:56px;flex-direction:column;gap:0;background:var(--hdr);padding:4px 16px 10px}.nav.open{display:flex}.nav a{padding:12px 0;font-size:17px;border-bottom:1px solid #ffffff12}}
