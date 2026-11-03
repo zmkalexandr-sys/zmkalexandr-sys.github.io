@@ -49,16 +49,19 @@ updateWa();
 })();
 
 /**
- * Свайп по странице на телефоне: влево — следующий раздел, вправо — предыдущий.
- * Порядок берётся из ленты разделов (только ссылки на страницы, без «Контакты»).
- * Не срабатывает: у краёв экрана (там системный жест «назад»), внутри
- * горизонтально прокручиваемых лент (фото, экраны приложения, сама лента),
- * при двух пальцах, при выделении текста, при открытом меню,
- * а также если жест короткий, медленный или не горизонтальный.
+ * Перелистывание страниц пальцем с предпросмотром.
+ * Страница едет за пальцем, а с края выезжает начало соседней страницы
+ * (её первый экран загружается заранее). Отпустили дальше трети экрана
+ * или резким движением — открывается соседняя страница, иначе всё
+ * возвращается на место. На первой и последней странице — лёгкое «пружинение».
+ * Жест не перехватывается: у краёв экрана (системное «назад»), внутри лент
+ * с горизонтальной прокруткой, при открытом меню, при двух пальцах,
+ * и пока движение больше вертикальное, чем горизонтальное.
  */
 (function swipePages(){
   const strip = document.getElementById('nav');
-  if (!strip || !('ontouchstart' in window)) return;
+  const main = document.querySelector('main');
+  if (!strip || !main || !('ontouchstart' in window)) return;
   const pages = [];
   strip.querySelectorAll('a').forEach(a => {
     const p = (a.getAttribute('href') || '').split('#')[0];
@@ -67,11 +70,27 @@ updateWa();
   const here = location.pathname.split('/').pop() || 'sos.html';
   const idx = pages.indexOf(here);
   if (idx < 0) return;
+  const prev = idx > 0 ? pages[idx - 1] : null, next = idx < pages.length - 1 ? pages[idx + 1] : null;
 
-  const EDGE = 28, MIN_DX = 90, RATIO = 2.2, MAX_MS = 700;
-  let s = null;
+  /** Первый экран соседней страницы (HTML-строка) — грузится заранее, один раз. */
+  const cache = {};
+  function prefetch(u){
+    if (!u || u in cache) return;
+    cache[u] = '';
+    fetch(u, {credentials: 'same-origin'}).then(r => r.ok ? r.text() : '').then(html => {
+      if (!html) return;
+      const d = new DOMParser().parseFromString(html, 'text/html');
+      const hero = d.querySelector('main .hero');
+      cache[u] = hero ? hero.outerHTML : '';
+    }).catch(() => { cache[u] = ''; /* нет сети — будет только сдвиг без предпросмотра */ });
+  }
+  const idle = window.requestIdleCallback || (f => setTimeout(f, 800));
+  idle(() => { prefetch(prev); prefetch(next); });
 
-  /** Есть ли между элементом и страницей своя горизонтальная прокрутка. */
+  const EDGE = 24, LOCK = 12, RATIO = 1.3;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let s = null, peek = null;
+
   function inHScroll(el){
     for (; el && el !== document.body; el = el.parentElement) {
       if (el.scrollWidth > el.clientWidth + 2) {
@@ -81,28 +100,86 @@ updateWa();
     }
     return false;
   }
+  function headerBottom(){
+    const h = document.querySelector('header');
+    return h ? Math.max(0, h.getBoundingClientRect().bottom) : 0;
+  }
+  function makePeek(u, dir){
+    removePeek();
+    peek = document.createElement('div');
+    peek.id = 'peek';
+    peek.setAttribute('aria-hidden', 'true');
+    peek.style.top = headerBottom() + 'px';
+    peek.innerHTML = '<div class="wrap">' + (cache[u] || '') + '</div>';
+    // язык предпросмотра — как у текущей страницы
+    peek.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+    peek.dataset.dir = dir;
+    document.body.appendChild(peek);
+  }
+  function removePeek(){ if (peek) { peek.remove(); peek = null; } }
+  function setX(x){
+    main.style.transform = x ? 'translate3d(' + x + 'px,0,0)' : '';
+    if (peek) {
+      const w = innerWidth;
+      const base = peek.dataset.dir === 'next' ? w : -w;
+      peek.style.transform = 'translate3d(' + (base + x) + 'px,0,0)';
+    }
+  }
+  function animateTo(x, done){
+    const dur = reduce ? 0 : 220;
+    const els = [main, peek].filter(Boolean);
+    els.forEach(e => { e.style.transition = 'transform ' + dur + 'ms ease-out'; });
+    setX(x);
+    setTimeout(() => { els.forEach(e => { e.style.transition = ''; }); done && done(); }, dur + 20);
+  }
+  function reset(){ main.classList.remove('swiping'); main.style.transition = ''; setX(0); removePeek(); }
+  // возврат кнопкой «назад» из кэша браузера — страница должна стоять на месте
+  window.addEventListener('pageshow', reset);
 
   document.addEventListener('touchstart', e => {
     s = null;
     if (e.touches.length !== 1 || strip.classList.contains('open')) return;
     const t = e.touches[0];
     if (t.clientX < EDGE || t.clientX > innerWidth - EDGE) return;
-    if (e.target.closest('input,textarea,select,video,[data-noswipe]') || inHScroll(e.target)) return;
-    s = { x: t.clientX, y: t.clientY, t: Date.now() };
+    if (e.target.closest('input,textarea,select,video,summary,[data-noswipe]') || inHScroll(e.target)) return;
+    s = { x: t.clientX, y: t.clientY, t: Date.now(), mode: null, dx: 0 };
   }, { passive: true });
 
-  document.addEventListener('touchmove', e => { if (e.touches.length > 1) s = null; }, { passive: true });
-
-  document.addEventListener('touchend', e => {
+  document.addEventListener('touchmove', e => {
     if (!s) return;
-    const t = e.changedTouches[0];
-    const dx = t.clientX - s.x, dy = t.clientY - s.y, dt = Date.now() - s.t;
+    if (e.touches.length > 1) { if (s.mode === 'h') animateTo(0, reset); s = null; return; }
+    const t = e.touches[0];
+    const dx = t.clientX - s.x, dy = t.clientY - s.y;
+    if (!s.mode) {
+      if (Math.abs(dx) < LOCK && Math.abs(dy) < LOCK) return;
+      if (Math.abs(dx) > RATIO * Math.abs(dy)) {
+        s.mode = 'h';
+        const target = dx < 0 ? next : prev;
+        if (target) makePeek(target, dx < 0 ? 'next' : 'prev');
+        main.classList.add('swiping');
+      } else { s = null; return; }   // вертикальная прокрутка — не мешаем
+    }
+    e.preventDefault();
+    const target = dx < 0 ? next : prev;
+    // сменилось направление — переставить предпросмотр
+    if (target && (!peek || peek.dataset.dir !== (dx < 0 ? 'next' : 'prev'))) makePeek(target, dx < 0 ? 'next' : 'prev');
+    if (!target) removePeek();
+    s.dx = target ? dx : dx * 0.25;    // на краю списка — пружина
+    setX(s.dx);
+  }, { passive: false });
+
+  function finish(){
+    if (!s || s.mode !== 'h') { s = null; return; }
+    const dx = s.dx, dt = Math.max(1, Date.now() - s.t);
+    const target = dx < 0 ? next : prev;
+    const fast = Math.abs(dx) / dt > 0.6 && Math.abs(dx) > 40;
     s = null;
-    if (dt > MAX_MS || Math.abs(dx) < MIN_DX || Math.abs(dx) < RATIO * Math.abs(dy)) return;
-    const sel = window.getSelection && String(window.getSelection());
-    if (sel) return;
-    const next = idx + (dx < 0 ? 1 : -1);
-    if (next < 0 || next >= pages.length) return;
-    location.href = pages[next];
-  }, { passive: true });
+    if (target && (Math.abs(dx) > innerWidth / 3 || fast)) {
+      animateTo(dx < 0 ? -innerWidth : innerWidth, () => { location.href = target; });
+    } else {
+      animateTo(0, reset);
+    }
+  }
+  document.addEventListener('touchend', finish, { passive: true });
+  document.addEventListener('touchcancel', () => { if (s && s.mode === 'h') animateTo(0, reset); s = null; }, { passive: true });
 })();

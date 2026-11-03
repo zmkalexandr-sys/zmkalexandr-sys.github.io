@@ -192,3 +192,15 @@ footer a{color:var(--muted)}
 .checks.pick input:focus-visible+.i{outline:2px solid var(--acc);outline-offset:2px}
 /* Лента фото в первом экране */
 .hero .gal{align-self:center}
+
+/* Сворачиваемые разделы «Работы и услуги» */
+details.fold>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;-webkit-tap-highlight-color:transparent}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary h2{margin:0}
+details.fold .chev{flex:none;width:26px;height:26px;fill:none;stroke:var(--acc);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+details.fold[open] .chev{transform:rotate(180deg)}
+details.fold[open]>summary{margin-bottom:12px}
+/* Перелистывание страниц пальцем: соседняя страница выезжает следом */
+#peek{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg,#f2f5f8);overflow:hidden;pointer-events:none;will-change:transform;box-shadow:0 0 24px #0003}
+#peek .wrap{padding-top:16px}
+main.swiping{will-change:transform}
