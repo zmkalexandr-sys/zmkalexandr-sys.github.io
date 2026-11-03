@@ -207,3 +207,6 @@ main.swiping{will-change:transform}
 
 /* Кнопка инструкции под «Узнать стоимость» */
 .prod .btn+.btn{margin-top:8px}
+
+/* Несколько инструкций под одним фото — каждая своей строкой */
+.gal figcaption .howto{display:block}
