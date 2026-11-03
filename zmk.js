@@ -18,13 +18,24 @@ const burger=document.getElementById('burger'), nav=document.getElementById('nav
 burger.addEventListener('click',()=>{const o=nav.classList.toggle('open'); burger.setAttribute('aria-expanded',String(o));});
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open'); burger.setAttribute('aria-expanded','false');}));
 
-/** Кнопки WhatsApp: готовый текст сообщения с выбранным вариантом. */
-document.querySelectorAll('a[data-wa]').forEach(a=>{
-  const what=a.dataset.wa;
-  const text='Здравствуйте! Интересует ZMK'+(what?': '+what:'');
-  a.href='https://wa.me/77072669154?text='+encodeURIComponent(text);
-  a.target='_blank'; a.rel='noopener';
-});
+/**
+ * Кнопки WhatsApp: готовый текст сообщения с выбранным вариантом (data-wa)
+ * и неисправностями, которые посетитель отметил в списке .pick.
+ * Ссылки пересчитываются при каждом изменении отметок.
+ */
+const WA_PHONE = '77072669154';
+function waHref(what){
+  const faults = [...document.querySelectorAll('.pick input:checked')].map(i => String(i.value).slice(0, 120));
+  let text = 'Здравствуйте! Интересует ZMK' + (what ? ': ' + what : '');
+  if (faults.length) text += '\nНеисправность: ' + faults.join('; ');
+  return 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text);
+}
+function updateWa(){
+  document.querySelectorAll('a[data-wa]').forEach(a => { a.href = waHref(a.dataset.wa || ''); });
+}
+document.querySelectorAll('a[data-wa]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+document.querySelectorAll('.pick input').forEach(i => i.addEventListener('change', updateWa));
+updateWa();
 
 /** Лента разделов: отметить текущую страницу и показать её пункт в ленте. */
 (function markCurrent(){

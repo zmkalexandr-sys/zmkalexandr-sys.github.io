@@ -31,7 +31,7 @@ header{position:sticky;top:0;z-index:50;background:var(--hdr);box-shadow:0 1px 0
 .hero{display:grid;gap:20px;align-items:center;padding:24px 0 8px}
 @media(min-width:860px){.hero{grid-template-columns:1.15fr .85fr;gap:32px;padding:32px 0 8px}}
 h1{font-size:clamp(26px,3.4vw,38px);line-height:1.15;letter-spacing:-.5px;margin:0 0 10px}
-h1 em{font-style:normal;color:var(--acc)}
+h1 em{font-style:normal;color:inherit}
 .lead{font-size:17px;color:#2c3d50;margin:0 0 14px;max-width:38em}
 .checks{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:6px}
 .checks li{display:flex;gap:8px;align-items:flex-start;font-size:15px}
@@ -181,3 +181,14 @@ footer a{color:var(--muted)}
 /* Схемы к шагам инструкций */
 .card.stp .sk{grid-column:1/-1;margin-top:10px;background:#0b1626;border-radius:10px;padding:8px}
 .card.stp .sk svg{display:block;width:100%;max-width:300px;height:auto;margin:0 auto}
+
+/* Неисправности, которые можно отметить: отмеченные уходят в сообщение WhatsApp */
+.checks.pick li{display:block}
+.checks.pick label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.checks.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.checks.pick .i{flex:none;border:2px solid #b8c4d0;border-radius:6px;color:transparent;padding:1px;box-sizing:border-box}
+.checks.pick input:checked+.i{background:var(--acc);border-color:var(--acc);color:#fff}
+.checks.pick label:has(input:checked){border-color:var(--acc);background:#eefbe9}
+.checks.pick input:focus-visible+.i{outline:2px solid var(--acc);outline-offset:2px}
+/* Лента фото в первом экране */
+.hero .gal{align-self:center}
