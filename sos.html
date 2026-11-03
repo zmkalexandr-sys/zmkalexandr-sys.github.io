@@ -3,128 +3,231 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZMK — умный доступ и SOS-детектор</title>
-<meta name="description" content="ZMK: управление шлагбаумом, воротами, дверью и другими устройствами через Bluetooth без интернета. SOS-детектор распознаёт сирены и автоматически открывает проезд.">
-<meta name="theme-color" content="#07111e">
-<meta property="og:title" content="ZMK — умный доступ и SOS-детектор">
-<meta property="og:description" content="Управление с телефона по Bluetooth и автоматическое открытие по распознанной сирене.">
+<title>ZMK — шлагбаум и ворота с телефона, SOS-детектор</title>
+<meta name="description" content="Алматы и весь Казахстан. ZMK: шлагбаум, ворота и калитка открываются с телефона по Bluetooth, без интернета. SOS-детектор сам открывает шлагбаум по сирене скорой, полиции и пожарных.">
+<meta name="theme-color" content="#050d17">
+<meta property="og:title" content="ZMK — шлагбаум и ворота с телефона, SOS-детектор">
+<meta property="og:description" content="Открытие с телефона по Bluetooth и автоматически — по сирене экстренных служб.">
 <meta property="og:url" content="https://zmkalexandr-sys.github.io/sos.html">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://zmkalexandr-sys.github.io/assets/zmk-og.jpg">
+<meta property="og:image" content="https://zmkalexandr-sys.github.io/zmk-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://zmkalexandr-sys.github.io/sos.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307111e'/%3E%3Cpath d='M9 9h14L9 23h14' fill='none' stroke='%23b5ff43' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ZMK","url":"https://zmkalexandr-sys.github.io/sos.html","logo":"https://zmkalexandr-sys.github.io/assets/zmk-og.jpg","email":"zmkalexandr@gmail.com","telephone":"+77072669154","sameAs":["https://t.me/Zmk_kz"]}</script>
-<style>
-:root{--bg:#07111e;--panel:#0d1c2d;--panel2:#10243a;--line:#24415b;--text:#f4f8fc;--muted:#a8bacb;--green:#a8f43b;--green2:#38df8a;--blue:#35b9f4;--red:#ff5268}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 8%,#0b3152 0,transparent 36%),var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:inherit}.wrap{max-width:1160px;margin:auto;padding:0 24px}
-html[data-l=ru] [lang=kk],html[data-l=ru] [lang=en],html[data-l=kk] [lang=ru],html[data-l=kk] [lang=en],html[data-l=en] [lang=ru],html[data-l=en] [lang=kk]{display:none}
-header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff16;gap:18px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:950;font-size:30px;letter-spacing:1px;color:var(--green)}.brand small{display:block;color:var(--muted);font-size:11px;line-height:1.2;letter-spacing:0;font-weight:600}.nav{display:flex;align-items:center;gap:24px}.nav a{text-decoration:none;color:#d5e2ed;font-size:14px}.nav a:hover{color:var(--green)}.langs{display:flex;gap:5px}.langs button{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-weight:700;cursor:pointer}.langs button[aria-pressed=true]{background:var(--green);color:#07111e;border-color:var(--green)}
-.hero{display:grid;grid-template-columns:1fr .95fr;align-items:center;gap:36px;padding:68px 0 56px}.eyebrow{color:var(--green);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px}.hero h1{font-size:clamp(38px,5.2vw,66px);line-height:1.02;letter-spacing:-1.8px;margin:14px 0 20px}.hero h1 em{font-style:normal;color:var(--green)}.lead{font-size:19px;color:#d0dce8;max-width:620px}.checks{display:grid;gap:12px;margin:25px 0 30px}.checks div{display:flex;gap:11px;align-items:flex-start}.tick{display:grid;place-items:center;flex:none;width:23px;height:23px;border-radius:7px;background:var(--green);color:#06111b;font-weight:900}.actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid var(--line);background:#0e2032}.btn.primary{background:var(--green);border-color:var(--green);color:#08111b}.btn:hover{transform:translateY(-1px)}.hero-art{position:relative;min-height:380px;border:1px solid #31536e;border-radius:28px;background:linear-gradient(145deg,#123452,#071523 65%);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:28px}.hero-art:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:#1b83b4;filter:blur(95px);opacity:.23;right:-60px;top:-100px}.product-placeholder{position:relative;width:100%;max-width:450px;aspect-ratio:1.18;display:grid;place-items:center;text-align:center;border:1px dashed #5e8097;border-radius:20px;background:#091827cc;padding:25px}.product-placeholder .device-icon{width:112px;height:84px;border:3px solid #dce8ed;border-radius:16px;background:linear-gradient(145deg,#f3f0e4,#c7c5b9);box-shadow:0 22px 55px #0008;position:relative;margin:0 auto 20px}.device-icon:before{content:"ZMK  SOS";position:absolute;left:10px;right:10px;top:12px;background:#0b1117;color:var(--green);font-weight:900;font-size:12px;padding:7px 2px;border-radius:4px}.device-icon:after{content:"";position:absolute;width:45px;height:13px;background:#13b66c;border-radius:3px;bottom:-10px;left:30px}.product-placeholder strong{display:block;font-size:21px}.product-placeholder p{color:var(--muted);font-size:13px;margin:7px 0 0}.signal{position:absolute;top:25px;right:25px;border:1px solid #ff536b66;background:#241522;border-radius:14px;padding:10px 14px;color:#fff;font-weight:800;font-size:13px}.signal span{color:#ff697b}
-.strip{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);background:#0a1a2a;padding:18px 0}.strip div{display:flex;align-items:center;justify-content:center;gap:12px;padding:4px 14px;border-right:1px solid var(--line);font-weight:650}.strip div:last-child{border:0}.strip b{color:var(--green);font-size:23px}
-section{padding:66px 0}.section-head{text-align:center;max-width:760px;margin:0 auto 32px}.section-head h2{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:0 0 12px}.section-head p{color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{border:1px solid var(--line);border-radius:20px;padding:25px;background:linear-gradient(145deg,#10243a,#0a1827)}.card h3{font-size:21px;margin:14px 0 8px}.card p{color:var(--muted);margin:0}.icon{width:52px;height:52px;display:grid;place-items:center;border-radius:15px;background:#173a35;color:var(--green);font-size:27px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.feature{padding:28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#10283d,#0b1929)}.feature h3{font-size:24px;margin:0 0 8px}.feature p{color:var(--muted);margin:0}.phone-screens{display:flex;align-items:center;justify-content:center;gap:10px;margin:24px 0 0}.screen{width:30%;min-height:200px;border:2px solid #49627a;border-radius:18px;background:linear-gradient(160deg,#123d43,#101a39);padding:14px 9px;text-align:center;box-shadow:0 14px 35px #0005}.screen:nth-child(2){min-height:240px;border-color:#29d88c}.screen small{color:#d6e7ed}.screen .circle{width:88px;height:88px;border-radius:50%;border:5px solid #22e4a0;background:linear-gradient(145deg,#00d990,#1675dc);margin:25px auto 10px;display:grid;place-items:center;font-size:12px;font-weight:900}.screen:nth-child(1) .circle{border-color:#f7ca27;background:#51451b}.screen:nth-child(3) .circle{border-color:#4a91ff;background:#2446bc}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{padding:24px;border-radius:18px;background:#0c1c2d;border:1px solid var(--line)}.num{font-size:13px;color:var(--green);font-weight:900;letter-spacing:1px}.step h3{margin:8px 0}.step p{color:var(--muted);margin:0}.note{margin-top:18px;padding:18px 20px;border-left:3px solid var(--green);background:#0d1e2c;color:#c4d2df;border-radius:0 12px 12px 0}
-.faq{max-width:850px;margin:auto}.faq details{border-bottom:1px solid var(--line);padding:17px 4px}.faq summary{cursor:pointer;font-weight:750}.faq p{color:var(--muted);margin:10px 0 0}
-.cta{border:1px solid #3b684a;border-radius:24px;padding:42px 24px;text-align:center;background:radial-gradient(ellipse at 50% 0,#214a2c66,transparent 65%),#0b1b2a}.cta h2{font-size:clamp(28px,4vw,42px);margin:0 0 10px}.cta p{color:var(--muted);margin:0 0 24px}.cta .actions{justify-content:center}.contacts{font-size:14px;color:var(--muted);margin-top:20px}.contacts a{color:var(--green)}footer{border-top:1px solid var(--line);padding:25px 0 38px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}footer a{color:var(--muted)}
-@media(max-width:850px){.nav{display:none}.hero{grid-template-columns:1fr;padding:44px 0}.hero-art{min-height:300px}.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:0}.strip div{justify-content:flex-start;padding:12px 18px}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.phone-screens{max-width:520px;margin:24px auto 0}}
-@media(max-width:520px){.wrap{padding:0 17px}header{height:68px}.brand{font-size:25px}.brand small{font-size:9px}.langs button{padding:7px 8px;font-size:11px}.hero h1{font-size:41px}.lead{font-size:17px}.hero-art{padding:15px;min-height:270px}.signal{font-size:11px;top:12px;right:12px}.strip{font-size:13px}.strip b{font-size:19px}.screen{min-height:170px;padding:9px 5px}.screen:nth-child(2){min-height:205px}.screen .circle{width:64px;height:64px;margin:18px auto 8px;font-size:10px}section{padding:48px 0}.card,.feature{padding:21px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-
-/* ZMK premium compact layer */
-:root{--bg:#050d17;--panel:#0a1725;--panel2:#102338;--line:#203b52;--green:#b5ff43;--blue:#42c7ff;--muted:#9aafc2}
-body{background:radial-gradient(ellipse at 88% 5%,#12446a55 0,transparent 34%),radial-gradient(ellipse at 8% 42%,#102d4050 0,transparent 32%),var(--bg);letter-spacing:-.012em}
-.wrap{max-width:1080px;padding-left:22px;padding-right:22px}
-header{height:66px;position:sticky;top:0;z-index:50;margin:0 -22px;padding:0 22px;background:#06111de8;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid #a7c7df20}
-.brand{font-size:27px;letter-spacing:1.5px}.brand small{font-size:10px}
-.nav{gap:20px}.nav a{font-size:13px;color:#c5d4e2}
-.langs button{font-size:11px;padding:6px 9px;border-radius:8px}
-.hero{gap:28px;padding:42px 0 34px}.hero h1{font-size:clamp(36px,4.7vw,58px);margin:10px 0 14px;letter-spacing:-2px}
-.eyebrow{font-size:11px;letter-spacing:2.2px}.lead{font-size:17px;line-height:1.55}
-.checks{gap:9px;margin:18px 0 22px}.checks div{font-size:14px;line-height:1.45}.tick{width:21px;height:21px;border-radius:6px;font-size:13px}
-.btn{padding:11px 17px;border-radius:10px;font-size:14px;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-.btn.primary{box-shadow:0 7px 24px #a8f43b25}.btn:hover{transform:translateY(-2px);box-shadow:0 9px 28px #0005}
-.hero-art{min-height:310px;border-radius:23px;padding:20px;box-shadow:inset 0 1px #ffffff12,0 20px 55px #0003}
-.hero-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,#ffffff0b,transparent 38%,#44c8ff08)}
-.product-placeholder{max-width:390px;aspect-ratio:1.3;border-color:#54748a88;border-radius:17px;padding:18px}
-.product-placeholder .device-icon{transform:scale(.88);margin-bottom:12px}
-.product-placeholder strong{font-size:18px}.product-placeholder p{font-size:12px;max-width:250px;margin:5px auto 0}
-.signal{top:17px;right:17px;font-size:11px;padding:8px 11px;border-radius:10px}
-.strip{padding:12px 0;background:#081522;border-color:#20394e}
-.strip div{font-size:13px;gap:9px}.strip b{font-size:20px}
-section{padding:48px 0}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.8px}.section-head p{font-size:14px}
-.grid{gap:13px}.card{padding:20px;border-radius:17px;background:linear-gradient(145deg,#10243a99,#0a1725);box-shadow:inset 0 1px #ffffff09}
-.card h3{font-size:18px;margin:11px 0 6px}.card p,.feature p,.step p{font-size:13px;line-height:1.55}
-.icon{width:43px;height:43px;border-radius:12px;font-size:23px}
-.two{gap:14px}.feature{padding:23px;border-radius:18px}.feature h3{font-size:21px}
-.phone-screens{gap:8px;margin-top:18px}.screen{border-radius:15px;min-height:175px}.screen:nth-child(2){min-height:205px}
-.steps{gap:12px}.step{padding:19px;border-radius:15px}.step h3{font-size:16px;margin:6px 0}
-.note{font-size:13px;margin-top:14px;padding:14px 17px}
-.faq details{padding:14px 4px}.faq summary{font-size:14px}.faq p{font-size:13px}
-.cta{padding:32px 22px;border-radius:20px}.cta h2{font-size:clamp(26px,3.5vw,36px)}.cta p{font-size:14px}
-.contacts{font-size:13px}footer{padding:20px 0 28px}
-.card,.feature,.step,.hero-art,.cta{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
-.card:hover,.feature:hover,.step:hover{border-color:#47718c;transform:translateY(-3px);box-shadow:0 15px 35px #0003}
-:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-@media(max-width:850px){header{margin:0 -22px;padding:0 22px}.hero{padding:32px 0 26px;gap:20px}.hero-art{min-height:275px}.strip div{padding:9px 14px}section{padding:40px 0}}
-@media(max-width:520px){.wrap{padding:0 16px}header{height:60px;margin:0 -16px;padding:0 16px}.brand{font-size:23px}.brand small{font-size:9px}.langs button{padding:6px 7px;font-size:10px}.hero{padding:28px 0 22px;gap:18px}.hero h1{font-size:37px;line-height:1.04}.lead{font-size:15px}.checks div{font-size:13px}.btn{padding:10px 13px;font-size:13px}.hero-art{min-height:245px;padding:13px}.product-placeholder{aspect-ratio:1.25;padding:13px}.signal{top:10px;right:10px;font-size:10px}.strip{font-size:12px}.strip b{font-size:18px}section{padding:36px 0}.section-head{margin-bottom:20px}.card,.feature{padding:18px}.screen{min-height:150px}.screen:nth-child(2){min-height:180px}}
-@media(prefers-reduced-motion:no-preference){.hero-art:before{animation:halo 9s ease-in-out infinite alternate}@keyframes halo{from{transform:translate3d(0,0,0) scale(.92)}to{transform:translate3d(-16px,12px,0) scale(1.08)}}}
-
-</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ZMK","url":"https://zmkalexandr-sys.github.io/sos.html","logo":"https://zmkalexandr-sys.github.io/zmk-og.jpg","email":"zmkalexandr@gmail.com","telephone":"+77072669154","address":{"@type":"PostalAddress","addressLocality":"Алматы","addressCountry":"KZ"},"areaServed":"KZ","sameAs":["https://t.me/Zmk_kz"]}</script>
+<link rel="stylesheet" href="zmk.css">
 </head>
-<body><div class="wrap">
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="gr"><stop offset="0" stop-color="#ff4d63" stop-opacity=".75"/><stop offset="1" stop-color="#ff4d63" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gb"><stop offset="0" stop-color="#3d8bff" stop-opacity=".75"/><stop offset="1" stop-color="#3d8bff" stop-opacity="0"/></radialGradient>
+    <pattern id="stripe" width="40" height="18" patternUnits="userSpaceOnUse"><rect width="40" height="18" fill="#f4f6fb"/><rect width="20" height="18" fill="#ff4d63"/></pattern>
+    <symbol id="ok" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></symbol>
+    <symbol id="no" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  </defs>
+</svg>
+
 <header>
-<a class="brand" href="#">ZMK <small><span lang="ru">Система умного доступа</span><span lang="kk">Ақылды қол жеткізу жүйесі</span><span lang="en">Smart access system</span></small></a>
-<nav class="nav"><a href="#app"><span lang="ru">Приложение</span><span lang="kk">Қосымша</span><span lang="en">App</span></a><a href="#detector"><span lang="ru">SOS-детектор</span><span lang="kk">SOS-детектор</span><span lang="en">SOS detector</span></a><a href="#how"><span lang="ru">Как работает</span><span lang="kk">Қалай жұмыс істейді</span><span lang="en">How it works</span></a><a href="#faq">FAQ</a></nav>
-<div class="langs" aria-label="Language"><button data-set="ru" aria-pressed="true">РУС</button><button data-set="kk" aria-pressed="false">ҚАЗ</button><button data-set="en" aria-pressed="false">ENG</button></div>
+  <div class="wrap bar">
+    <a class="brand" href="#" aria-label="ZMK"><img class="px" src="zmk-logo.svg" alt="ZMK" width="182" height="82"></a>
+    <nav class="nav" id="nav">
+      <a href="#models"><span lang="ru">Варианты</span><span lang="kk">Нұсқалар</span><span lang="en">Options</span></a>
+      <a href="shlagbaum.html"><span lang="ru">Шлагбаумы</span><span lang="kk">Шлагбаумдар</span><span lang="en">Barriers</span></a>
+      <a href="vorota.html"><span lang="ru">Ворота</span><span lang="kk">Қақпалар</span><span lang="en">Gates</span></a>
+      <a href="pulty.html"><span lang="ru">Пульты</span><span lang="kk">Пульттер</span><span lang="en">Remotes</span></a>
+      <a href="domofon.html"><span lang="ru">Домофоны</span><span lang="kk">Домофондар</span><span lang="en">Intercoms</span></a>
+      <a href="#app"><span lang="ru">Приложение</span><span lang="kk">Қосымша</span><span lang="en">App</span></a>
+      <a href="#detector"><span lang="ru">SOS-детектор</span><span lang="kk">SOS-детектор</span><span lang="en">SOS detector</span></a>
+      <a href="#faq"><span lang="ru">Вопросы</span><span lang="kk">Сұрақтар</span><span lang="en">FAQ</span></a>
+      <a href="#order"><span lang="ru">Контакты</span><span lang="kk">Байланыс</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="langs" aria-label="Язык / Тіл / Language">
+      <button type="button" data-set="ru" aria-pressed="true">РУС</button>
+      <button type="button" data-set="kk" aria-pressed="false">ҚАЗ</button>
+      <button type="button" data-set="en" aria-pressed="false">ENG</button>
+    </div>
+    <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
 </header>
-<main>
+
+<main class="wrap">
 <div class="hero">
-<div>
-<div class="eyebrow">ZMK · SMART ACCESS</div>
-<h1><em>ZMK</em><br><span lang="ru">Умный доступ<br>без лишних сложностей</span><span lang="kk">Ақылды қол жеткізу<br>артық әуресіз</span><span lang="en">Smart access<br>made simple</span></h1>
-<p class="lead"><span lang="ru">Управляйте шлагбаумом, воротами, дверью и другими подключёнными устройствами с телефона. А SOS-детектор автоматически реагирует на распознанные сирены экстренных служб.</span><span lang="kk">Шлагбаумды, қақпаны, есікті және басқа қосылған құрылғыларды телефоннан басқарыңыз. SOS-детектор шұғыл қызметтердің танылған сиреналарына автоматты түрде әрекет етеді.</span><span lang="en">Control barriers, gates, doors and other connected devices from your phone. The SOS detector responds automatically to recognized emergency sirens.</span></p>
-<div class="checks">
-<div><span class="tick">✓</span><span lang="ru">Приложение управляет устройствами по Bluetooth — интернет не нужен</span><span lang="kk">Қосымша құрылғыларды Bluetooth арқылы басқарады — интернет қажет емес</span><span lang="en">The app controls devices over Bluetooth — no internet required</span></div>
-<div><span class="tick">✓</span><span lang="ru">SOS-детектор распознаёт сирены и подаёт команду на открытие</span><span lang="kk">SOS-детектор сиреналарды танып, ашу пәрменін береді</span><span lang="en">The SOS detector recognizes sirens and sends an opening command</span></div>
-<div><span class="tick">✓</span><span lang="ru">Русский, казахский и английский интерфейс</span><span lang="kk">Қазақша, орысша және ағылшынша интерфейс</span><span lang="en">Kazakh, Russian and English interface</span></div>
+  <div>
+    <h1><span lang="ru">Шлагбаум и ворота — <em>с телефона</em>. А для скорой откроется сам</span><span lang="kk">Шлагбаум мен қақпа — <em>телефоннан</em>. Жедел жәрдемге өзі ашылады</span><span lang="en">Barrier and gates — <em>from your phone</em>. Opens by itself for an ambulance</span></h1>
+    <p class="lead"><span lang="ru">Приложение ZMK открывает шлагбаум, ворота, калитку и дверь по Bluetooth, без интернета. SOS-детектор сам открывает шлагбаум, когда слышит сирену скорой, полиции или пожарных.</span><span lang="kk">ZMK қосымшасы шлагбаумды, қақпаны, қақпашаны және есікті Bluetooth арқылы, интернетсіз ашады. SOS-детектор жедел жәрдемнің, полицияның немесе өрт сөндірушілердің сиренасын естігенде шлагбаумды өзі ашады.</span><span lang="en">The ZMK app opens barriers, gates, wickets and doors over Bluetooth, no internet needed. The SOS detector opens the barrier by itself when it hears an ambulance, police or fire siren.</span></p>
+    <ul class="checks">
+      <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Без интернета, сервера и SIM-карты</span><span lang="kk">Интернетсіз, серверсіз және SIM-картасыз</span><span lang="en">No internet, server or SIM card</span></span></li>
+      <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Подключается к существующему шлагбауму и воротам</span><span lang="kk">Бар шлагбаум мен қақпаға қосылады</span><span lang="en">Connects to your existing barrier and gates</span></span></li>
+      <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Приложение на русском, казахском и английском</span><span lang="kk">Қосымша қазақ, орыс және ағылшын тілдерінде</span><span lang="en">App in Kazakh, Russian and English</span></span></li>
+    </ul>
+    <div class="btns">
+      <a class="btn main" href="#order"><span lang="ru">Узнать цену</span><span lang="kk">Бағасын білу</span><span lang="en">Get a price</span></a>
+      <a class="btn" href="#models"><span lang="ru">Варианты</span><span lang="kk">Нұсқалар</span><span lang="en">Options</span></a>
+    </div>
+  </div>
+  <div class="photo">
+    <p class="tag"><b></b><span lang="ru">SOS · распознаёт сирены</span><span lang="kk">SOS · сиренаны таниды</span><span lang="en">SOS · recognises sirens</span></p>
+    <img src="zmk-sos.webp" width="1200" height="675" alt="ZMK SOS-детектор">
+  </div>
 </div>
-<div class="actions"><a class="btn primary" href="#order"><span lang="ru">Узнать подробнее</span><span lang="kk">Толығырақ білу</span><span lang="en">Learn more</span> →</a><a class="btn" href="#app"><span lang="ru">Посмотреть приложение</span><span lang="kk">Қосымшаны көру</span><span lang="en">Explore the app</span></a></div>
+
+<div class="strip">
+  <div><svg class="i" viewBox="0 0 24 24"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><path d="M3 3l18 18"/></svg><span><span lang="ru">Без интернета</span><span lang="kk">Интернетсіз</span><span lang="en">No internet</span></span></div>
+  <div><svg class="i" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg><span><span lang="ru">С телефона</span><span lang="kk">Телефоннан</span><span lang="en">From your phone</span></span></div>
+  <div><svg class="i" viewBox="0 0 24 24"><path d="M6 18v-5a6 6 0 0 1 12 0v5"/><path d="M4 18h16v3H4z"/><path d="M12 2v2M4.5 5.5l1.4 1.4M19.5 5.5l-1.4 1.4"/></svg><span><span lang="ru">По сирене</span><span lang="kk">Сирена бойынша</span><span lang="en">On a siren</span></span></div>
+  <div><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span><span lang="ru">Несколько устройств</span><span lang="kk">Бірнеше құрылғы</span><span lang="en">Multiple devices</span></span></div>
 </div>
-<div class="hero-art" aria-label="ZMK SOS detector product area"><div class="signal">● <span>SOS</span> · <span lang="ru">распознавание сирены</span><span lang="kk">сиренаны тану</span><span lang="en">siren recognition</span></div><div class="product-placeholder" style="padding:0;overflow:hidden;border-style:solid"><img src="assets/zmk-sos.webp" alt="ZMK SOS-детектор" style="display:block;width:100%;height:100%;max-height:100%;object-fit:contain;border-radius:16px"></div></div>
-</div>
-<div class="strip"><div><b>⌁</b><span lang="ru">Без интернета</span><span lang="kk">Интернетсіз</span><span lang="en">No internet</span></div><div><b>ᛒ</b><span lang="ru">Bluetooth</span><span lang="kk">Bluetooth</span><span lang="en">Bluetooth</span></div><div><b>⚡</b><span lang="ru">Питание детектора 220 В AC</span><span lang="kk">Детектор қуаты 220 В AC</span><span lang="en">Detector power: 220 V AC</span></div><div><b>◎</b><span lang="ru">Несколько типов устройств</span><span lang="kk">Құрылғының бірнеше түрі</span><span lang="en">Multiple device types</span></div></div>
-<section id="app"><div class="two"><div class="feature"><div class="eyebrow">ZMK APP</div><h3><span lang="ru">Управление с телефона</span><span lang="kk">Телефоннан басқару</span><span lang="en">Control from your phone</span></h3><p><span lang="ru">Приложение подключается к плате по Bluetooth. Для локального управления интернет и SIM-карта не требуются.</span><span lang="kk">Қосымша платаға Bluetooth арқылы қосылады. Жергілікті басқару үшін интернет пен SIM-карта қажет емес.</span><span lang="en">The app connects to the controller over Bluetooth. Local control does not require internet or a SIM card.</span></p>
-<div class="phone-screens"><div class="screen"><small>Таймер</small><div class="circle">ВКЛ / ВЫКЛ</div><small>ZMK</small></div><div class="screen"><small>Шлагбаум</small><div class="circle">ОТКРЫТЬ</div><small>Bluetooth</small></div><div class="screen"><small>Ворота</small><div class="circle">ОТКРЫТЬ</div><small>ZMK</small></div></div></div>
-<div class="feature"><div class="eyebrow">APP FEATURES</div><h3><span lang="ru">Что доступно в приложении</span><span lang="kk">Қосымша мүмкіндіктері</span><span lang="en">What the app offers</span></h3><div class="checks">
-<div><span class="tick">✓</span><span lang="ru">Управление шлагбаумом, дверью и воротами</span><span lang="kk">Шлагбаумды, есікті және қақпаны басқару</span><span lang="en">Control barriers, doors and gates</span></div>
-<div><span class="tick">✓</span><span lang="ru">Добавление нескольких устройств</span><span lang="kk">Бірнеше құрылғыны қосу</span><span lang="en">Add multiple devices</span></div>
-<div><span class="tick">✓</span><span lang="ru">Настройка названия и типа устройства</span><span lang="kk">Құрылғы атауы мен түрін баптау</span><span lang="en">Set device name and type</span></div>
-<div><span class="tick">✓</span><span lang="ru">Таймер и управление подключёнными нагрузками</span><span lang="kk">Таймер және қосылған жүктемелерді басқару</span><span lang="en">Timer and connected-load control</span></div>
-<div><span class="tick">✓</span><span lang="ru">Русский, казахский и английский языки</span><span lang="kk">Қазақ, орыс және ағылшын тілдері</span><span lang="en">Kazakh, Russian and English languages</span></div>
-</div></div></div></section>
-<section id="detector"><div class="section-head"><h2><span lang="ru">SOS-детектор ZMK</span><span lang="kk">ZMK SOS-детекторы</span><span lang="en">ZMK SOS detector</span></h2><p><span lang="ru">Отдельное устройство для автоматического реагирования на сирены экстренных служб.</span><span lang="kk">Шұғыл қызметтердің сиреналарына автоматты түрде әрекет ететін жеке құрылғы.</span><span lang="en">A dedicated device that responds automatically to emergency-service sirens.</span></p></div>
-<div class="grid">
-<div class="card"><div class="icon">♬</div><h3><span lang="ru">Распознавание сирен</span><span lang="kk">Сиреналарды тану</span><span lang="en">Siren recognition</span></h3><p><span lang="ru">Устройство анализирует звуковой сигнал и распознаёт сирены экстренных служб.</span><span lang="kk">Құрылғы дыбысты талдап, шұғыл қызметтердің сиреналарын таниды.</span><span lang="en">The device analyzes sound and recognizes emergency-service sirens.</span></p></div>
-<div class="card"><div class="icon">↗</div><h3><span lang="ru">Команда на открытие</span><span lang="kk">Ашу пәрмені</span><span lang="en">Open command</span></h3><p><span lang="ru">При распознавании предусмотренного сигнала детектор подаёт команду на подключённую систему доступа.</span><span lang="kk">Тиісті сигнал танылғанда детектор қосылған қол жеткізу жүйесіне пәрмен береді.</span><span lang="en">When the configured signal is recognized, the detector sends a command to the connected access system.</span></p></div>
-<div class="card"><div class="icon">⚡</div><h3><span lang="ru">Питание 220 В AC</span><span lang="kk">220 В AC қуат</span><span lang="en">220 V AC power</span></h3><p><span lang="ru">Питание указано на маркировке корпуса устройства. Монтаж должен выполнять специалист.</span><span lang="kk">Қуат көзі құрылғы корпусындағы жапсырмада көрсетілген. Орнатуды маман орындауы керек.</span><span lang="en">The device label specifies its power supply. Installation should be performed by a qualified specialist.</span></p></div>
-</div><div class="note"><span lang="ru">Важно: фактическая работа зависит от правильного размещения, настройки и подключения детектора к совместимому блоку управления. Не рассматривайте устройство как замену официальным системам экстренного оповещения.</span><span lang="kk">Маңызды: жұмыс нәтижесі детектордың дұрыс орналасуына, бапталуына және үйлесімді басқару блогына қосылуына байланысты.</span><span lang="en">Important: operation depends on correct placement, configuration and connection to a compatible controller.</span></div></section>
-<section id="how"><div class="section-head"><h2><span lang="ru">Как работает система</span><span lang="kk">Жүйе қалай жұмыс істейді</span><span lang="en">How the system works</span></h2><p><span lang="ru">Два самостоятельных способа управления доступом — в зависимости от установленного оборудования.</span><span lang="kk">Орнатылған жабдыққа байланысты қол жеткізуді басқарудың екі дербес тәсілі.</span><span lang="en">Two independent ways to manage access, depending on the installed equipment.</span></p></div>
-<div class="steps"><div class="step"><div class="num">01 · SOS</div><h3><span lang="ru">Детектор распознаёт сирену</span><span lang="kk">Детектор сиренаны таниды</span><span lang="en">Detector recognizes a siren</span></h3><p><span lang="ru">При распознавании предусмотренного сигнала формируется команда.</span><span lang="kk">Тиісті сигнал танылғанда пәрмен жасалады.</span><span lang="en">A command is generated when the configured signal is recognized.</span></p></div><div class="step"><div class="num">02 · ACCESS</div><h3><span lang="ru">Система получает команду</span><span lang="kk">Жүйе пәрменді қабылдайды</span><span lang="en">The system receives the command</span></h3><p><span lang="ru">Подключённый контроллер запускает предусмотренное открытие.</span><span lang="kk">Қосылған контроллер тиісті ашу әрекетін орындайды.</span><span lang="en">The connected controller performs the configured opening action.</span></p></div><div class="step"><div class="num">03 · APP</div><h3><span lang="ru">Управление с телефона</span><span lang="kk">Телефоннан басқару</span><span lang="en">Control from the app</span></h3><p><span lang="ru">Пользователь отправляет команду через Bluetooth из приложения ZMK.</span><span lang="kk">Пайдаланушы ZMK қосымшасынан Bluetooth арқылы пәрмен жібереді.</span><span lang="en">The user sends a command over Bluetooth from the ZMK app.</span></p></div></div></section>
-<section><div class="section-head"><h2><span lang="ru">Установка и подключение</span><span lang="kk">Орнату және қосу</span><span lang="en">Installation and connection</span></h2><p><span lang="ru">ZMK подключается к существующей системе управления доступом — конкретная схема зависит от оборудования на объекте.</span><span lang="kk">ZMK қолданыстағы қол жеткізуді басқару жүйесіне қосылады. Нақты схема нысандағы жабдыққа байланысты.</span><span lang="en">ZMK connects to an existing access-control system. The exact wiring depends on the equipment at the site.</span></p></div><div class="grid"><div class="card"><div class="icon">▤</div><h3><span lang="ru">Шлагбаумы и ворота</span><span lang="kk">Шлагбаумдар мен қақпалар</span><span lang="en">Barriers and gates</span></h3><p><span lang="ru">Подключение к соответствующему входу блока управления, если он предусмотрен производителем.</span><span lang="kk">Өндіруші қарастырған жағдайда басқару блогының тиісті кірісіне қосылады.</span><span lang="en">Connects to the appropriate controller input where supported by the manufacturer.</span></p></div><div class="card"><div class="icon">▣</div><h3><span lang="ru">Двери и калитки</span><span lang="kk">Есіктер мен қақпашалар</span><span lang="en">Doors and wickets</span></h3><p><span lang="ru">Возможность подключения зависит от типа электрозамка и схемы управления.</span><span lang="kk">Қосу мүмкіндігі электр құлпының түрі мен басқару схемасына байланысты.</span><span lang="en">Compatibility depends on the electric lock and its control circuit.</span></p></div><div class="card"><div class="icon">⚙</div><h3><span lang="ru">Настройка специалистом</span><span lang="kk">Маманның баптауы</span><span lang="en">Professional setup</span></h3><p><span lang="ru">Перед установкой проверяются совместимость, режим входа и требования производителя привода.</span><span lang="kk">Орнату алдында үйлесімділік пен жетек өндірушісінің талаптары тексеріледі.</span><span lang="en">Compatibility, input mode and operator-manufacturer requirements are checked before installation.</span></p></div></div></section>
-<section id="faq"><div class="section-head"><h2>FAQ</h2><p><span lang="ru">Коротко о главном</span><span lang="kk">Маңызды сұрақтарға қысқаша жауап</span><span lang="en">Quick answers</span></p></div><div class="faq">
-<details><summary><span lang="ru">Нужен ли интернет для приложения?</span><span lang="kk">Қосымшаға интернет керек пе?</span><span lang="en">Does the app need internet?</span></summary><p><span lang="ru">Для локального управления приложением ZMK используется Bluetooth, интернет не нужен.</span><span lang="kk">ZMK қосымшасымен жергілікті басқару Bluetooth арқылы орындалады, интернет қажет емес.</span><span lang="en">Local control in the ZMK app uses Bluetooth and does not need internet.</span></p></details>
-<details><summary><span lang="ru">SOS-детектор заменяет приложение?</span><span lang="kk">SOS-детектор қосымшаны алмастыра ма?</span><span lang="en">Does the SOS detector replace the app?</span></summary><p><span lang="ru">Это отдельный способ автоматического управления по распознанной сирене. Управление со смартфона выполняется приложением ZMK и соответствующим контроллером.</span><span lang="kk">Бұл танылған сирена бойынша автоматты басқарудың жеке тәсілі. Смартфоннан басқару ZMK қосымшасы және тиісті контроллер арқылы орындалады.</span><span lang="en">It is a separate automatic control method triggered by a recognized siren. Smartphone control uses the ZMK app and a compatible controller.</span></p></details>
-<details><summary><span lang="ru">Подойдёт ли ZMK к моему шлагбауму?</span><span lang="kk">ZMK менің шлагбаумыма сәйкес келе ме?</span><span lang="en">Will ZMK work with my barrier?</span></summary><p><span lang="ru">Нужно проверить модель блока управления и доступный вход управления. Пришлите модель или фото маркировки — поможем уточнить совместимость.</span><span lang="kk">Басқару блогының моделін және басқару кірісін тексеру қажет. Моделін немесе жапсырмасының фотосын жіберіңіз.</span><span lang="en">The controller model and available control input need to be checked. Send the model or a photo of its label and we can help assess compatibility.</span></p></details>
-<details><summary><span lang="ru">Можно ли подключить несколько устройств?</span><span lang="kk">Бірнеше құрылғыны қосуға бола ма?</span><span lang="en">Can I connect multiple devices?</span></summary><p><span lang="ru">В приложении предусмотрено добавление нескольких устройств. Количество и схема подключения зависят от установленного оборудования.</span><span lang="kk">Қосымшада бірнеше құрылғыны қосу қарастырылған. Саны мен қосылу схемасы жабдыққа байланысты.</span><span lang="en">The app supports adding multiple devices. The number and wiring depend on the installed equipment.</span></p></details>
-</div></section>
-<section id="order"><div class="cta"><h2><span lang="ru">Подберём решение для вашего объекта</span><span lang="kk">Нысаныңызға лайық шешім таңдаймыз</span><span lang="en">Let’s find the right setup for your site</span></h2><p><span lang="ru">Расскажите, чем нужно управлять, и пришлите модель оборудования. Поможем разобраться с подключением.</span><span lang="kk">Қандай құрылғыны басқару керегін айтып, жабдық моделін жіберіңіз. Қосылу жолын анықтауға көмектесеміз.</span><span lang="en">Tell us what you want to control and share the equipment model. We’ll help check the connection options.</span></p><div class="actions"><a class="btn primary" href="https://wa.me/77072669154" target="_blank" rel="noopener">WhatsApp ↗</a><a class="btn" href="https://t.me/Zmk_kz" target="_blank" rel="noopener">Telegram ↗</a><a class="btn" href="tel:+77072669154"><span lang="ru">Позвонить</span><span lang="kk">Қоңырау шалу</span><span lang="en">Call</span></a></div><div class="contacts">Александр · <a href="tel:+77072669154">+7 707 266 91 54</a> (WhatsApp) · Telegram <a href="https://t.me/Zmk_kz" target="_blank" rel="noopener">@Zmk_kz</a> · <a href="mailto:zmkalexandr@gmail.com">zmkalexandr@gmail.com</a></div></div></section>
+
+<section id="models">
+  <h2><span lang="ru">Выберите вариант</span><span lang="kk">Нұсқаны таңдаңыз</span><span lang="en">Choose an option</span></h2>
+  <p class="sub"><span lang="ru">Три вида устройств — под ваш объект и бюджет.</span><span lang="kk">Нысаныңыз бен бюджетіңізге сай үш түрі.</span><span lang="en">Three kinds of device for your site and budget.</span></p>
+  <div class="grid c3">
+    <div class="card model best">
+      <svg class="pic" viewBox="0 0 320 180" aria-hidden="true">
+        <rect width="320" height="180" rx="12" fill="#0a1626"/>
+        <rect x="36" y="22" width="76" height="136" rx="14" fill="#111a33" stroke="#2b3a60" stroke-width="2"/>
+        <rect x="44" y="34" width="60" height="112" rx="8" fill="#0e1528"/>
+        <circle cx="74" cy="90" r="22" fill="none" stroke="#b5ff43" stroke-opacity=".35" stroke-width="3"/>
+        <circle cx="74" cy="90" r="15" fill="#b5ff43"/>
+        <rect x="68" y="89" width="12" height="9" rx="2" fill="#071100"/>
+        <path d="M71 89v-3a3 3 0 0 1 6 0" stroke="#071100" stroke-width="2" fill="none"/>
+        <g fill="none" stroke="#b5ff43" stroke-width="3" stroke-linecap="round"><path class="wave" d="M124 80a12 12 0 0 1 0 20"/><path class="wave w2" d="M134 70a24 24 0 0 1 0 40"/><path class="wave w3" d="M144 60a36 36 0 0 1 0 60"/></g>
+        <g fill="#111a33" stroke="#2b3a60" stroke-width="2"><rect x="184" y="20" width="108" height="40" rx="10"/><rect x="184" y="70" width="108" height="40" rx="10"/><rect x="184" y="120" width="108" height="40" rx="10"/></g>
+        <g fill="none" stroke="#b5ff43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M218 52h8M222 52V36M222 36l30-12"/><circle cx="222" cy="36" r="2"/>
+          <path d="M214 104V76M262 104V76M217 80h19v24h-19zM240 80h19v24h-19zM223.5 80v24M229.5 80v24M246.5 80v24M252.5 80v24"/>
+          <path d="M214 154V132M262 154V132M214 138h10M252 138h10"/><rect x="228" y="126" width="20" height="28" rx="2"/><circle cx="243" cy="141" r="1.6"/>
+        </g>
+      </svg>
+      <span class="badge"><span lang="ru">Основной</span><span lang="kk">Негізгі</span><span lang="en">Main</span></span>
+      <h3><span lang="ru">Управление с телефона</span><span lang="kk">Телефоннан басқару</span><span lang="en">Phone control</span></h3>
+      <ul class="list">
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Шлагбаум, ворота, калитка, дверь — открываются с телефона</span><span lang="kk">Шлагбаум, қақпа, қақпаша, есік — телефоннан ашылады</span><span lang="en">Barrier, gates, wicket, door — open from the phone</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Свет и другие приборы: импульс, удержание, вкл/выкл, таймер</span><span lang="kk">Жарық және басқа құрылғылар: импульс, ұстап тұру, қосу/өшіру, таймер</span><span lang="en">Lights and other devices: pulse, hold, on/off, timer</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Без интернета — по Bluetooth</span><span lang="kk">Интернетсіз — Bluetooth арқылы</span><span lang="en">No internet — over Bluetooth</span></span></li>
+      </ul>
+      <a class="btn main" data-wa="управление с телефона" href="https://wa.me/77072669154"><span lang="ru">Узнать цену</span><span lang="kk">Бағасын білу</span><span lang="en">Get a price</span></a>
+    </div>
+    <div class="card model">
+      <svg class="pic" viewBox="0 0 320 180" aria-hidden="true">
+        <rect width="320" height="180" rx="12" fill="#0a1626"/>
+        <circle cx="48" cy="74" r="46" fill="url(#gr)"/><circle cx="72" cy="74" r="46" fill="url(#gb)"/>
+        <rect x="34" y="66" width="52" height="16" rx="8" fill="#1b2440"/><rect x="37" y="69" width="22" height="10" rx="5" fill="#ff4d63"/><rect x="61" y="69" width="22" height="10" rx="5" fill="#3d8bff"/>
+        <g fill="none" stroke="#b5ff43" stroke-width="3" stroke-linecap="round"><path class="wave" d="M98 62a20 20 0 0 1 0 28"/><path class="wave w2" d="M110 52a34 34 0 0 1 0 48"/></g>
+        <path d="M0 150H320" stroke="#22305a" stroke-width="2"/>
+        <g transform="rotate(70 160 84)"><rect x="82" y="78" width="78" height="12" rx="6" fill="url(#stripe)"/></g>
+        <rect x="148" y="76" width="24" height="74" rx="6" fill="#1b2440" stroke="#2b3a60" stroke-width="2"/><circle cx="160" cy="84" r="5" fill="#2b3a60"/>
+        <rect x="134" y="108" width="52" height="30" rx="6" fill="#0e1528" stroke="#b5ff43" stroke-width="2"/>
+        <text x="160" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="13" letter-spacing="1" fill="#b5ff43">ZMK</text>
+        <g fill="none" stroke="#b5ff43" stroke-width="3" stroke-linecap="round"><path class="wave" d="M222 66a20 20 0 0 0 0 28"/><path class="wave w2" d="M210 56a34 34 0 0 0 0 48"/></g>
+        <rect x="236" y="34" width="50" height="92" rx="10" fill="#111a33" stroke="#2b3a60" stroke-width="2"/><rect x="242" y="44" width="38" height="72" rx="6" fill="#0e1528"/><circle cx="261" cy="80" r="11" fill="#b5ff43"/>
+      </svg>
+      <span class="badge"><span lang="ru">Два способа открыть</span><span lang="kk">Ашудың екі тәсілі</span><span lang="en">Two ways to open</span></span>
+      <h3><span lang="ru">Телефон + SOS-детектор</span><span lang="kk">Телефон + SOS-детектор</span><span lang="en">Phone + SOS detector</span></h3>
+      <ul class="list">
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Открывается со смартфона — приложение ZMK</span><span lang="kk">Смартфоннан ZMK қосымшасы арқылы ашылады</span><span lang="en">Opens from a smartphone with the ZMK app</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Сам открывает по сирене скорой, полиции, пожарных</span><span lang="kk">Жедел жәрдемнің, полицияның, өрт сөндірушілердің сиренасы бойынша өзі ашады</span><span lang="en">Opens by itself on an ambulance, police or fire siren</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Работает без интернета</span><span lang="kk">Интернетсіз жұмыс істейді</span><span lang="en">Works without the internet</span></span></li>
+      </ul>
+      <a class="btn" data-wa="телефон + SOS-детектор" href="https://wa.me/77072669154"><span lang="ru">Узнать цену</span><span lang="kk">Бағасын білу</span><span lang="en">Get a price</span></a>
+    </div>
+    <div class="card model">
+      <svg class="pic" viewBox="0 0 320 180" aria-hidden="true">
+        <rect width="320" height="180" rx="12" fill="#0a1626"/>
+        <circle cx="62" cy="80" r="52" fill="url(#gr)"/><circle cx="90" cy="80" r="52" fill="url(#gb)"/>
+        <rect x="46" y="72" width="60" height="16" rx="8" fill="#1b2440"/><rect x="49" y="75" width="26" height="10" rx="5" fill="#ff4d63"/><rect x="77" y="75" width="26" height="10" rx="5" fill="#3d8bff"/>
+        <g fill="none" stroke="#b5ff43" stroke-width="3" stroke-linecap="round"><path class="wave" d="M122 66a22 22 0 0 1 0 30"/><path class="wave w2" d="M136 56a38 38 0 0 1 0 50"/><path class="wave w3" d="M150 46a54 54 0 0 1 0 70"/></g>
+        <path d="M0 150H320" stroke="#22305a" stroke-width="2"/>
+        <g transform="rotate(70 236 84)"><rect x="156" y="78" width="80" height="12" rx="6" fill="url(#stripe)"/></g>
+        <rect x="224" y="76" width="24" height="74" rx="6" fill="#1b2440" stroke="#2b3a60" stroke-width="2"/><circle cx="236" cy="84" r="5" fill="#2b3a60"/>
+        <rect x="210" y="108" width="52" height="30" rx="6" fill="#0e1528" stroke="#b5ff43" stroke-width="2"/>
+        <text x="236" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="13" letter-spacing="1" fill="#b5ff43">ZMK</text>
+      </svg>
+      <span class="badge"><span lang="ru">Выгоднее</span><span lang="kk">Тиімдірек</span><span lang="en">Lower price</span></span>
+      <h3>SOS-<span lang="ru">детектор</span><span lang="kk">детектор</span><span lang="en">detector</span></h3>
+      <ul class="list">
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Сам открывает шлагбаум по сирене</span><span lang="kk">Сирена бойынша шлагбаумды өзі ашады</span><span lang="en">Opens the barrier by itself on a siren</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Работает без интернета</span><span lang="kk">Интернетсіз жұмыс істейді</span><span lang="en">Works without the internet</span></span></li>
+        <li class="no"><svg class="i"><use href="#no"/></svg><span><span lang="ru">Со смартфона не открывается</span><span lang="kk">Смартфоннан ашылмайды</span><span lang="en">No smartphone opening</span></span></li>
+      </ul>
+      <a class="btn" data-wa="SOS-детектор" href="https://wa.me/77072669154"><span lang="ru">Узнать цену</span><span lang="kk">Бағасын білу</span><span lang="en">Get a price</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="app">
+  <div class="app">
+    <div>
+      <h2><span lang="ru">Приложение ZMK</span><span lang="kk">ZMK қосымшасы</span><span lang="en">The ZMK app</span></h2>
+      <p class="sub"><span lang="ru">Одна большая кнопка — и шлагбаум открыт. Телефон связывается с устройством по Bluetooth, интернет не нужен.</span><span lang="kk">Бір үлкен түйме — шлагбаум ашық. Телефон құрылғымен Bluetooth арқылы байланысады, интернет қажет емес.</span><span lang="en">One big button and the barrier is open. The phone talks to the device over Bluetooth, no internet needed.</span></p>
+      <ul class="checks">
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Несколько устройств: шлагбаум, ворота, калитка, гараж</span><span lang="kk">Бірнеше құрылғы: шлагбаум, қақпа, қақпаша, гараж</span><span lang="en">Several devices: barrier, gates, wicket, garage</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Таймер и управление светом и приборами</span><span lang="kk">Таймер, жарық пен құрылғыларды басқару</span><span lang="en">Timer and control of lights and appliances</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Кнопка на рабочем столе телефона (Android)</span><span lang="kk">Телефонның жұмыс үстеліндегі түйме (Android)</span><span lang="en">Home-screen button (Android)</span></span></li>
+        <li><svg class="i"><use href="#ok"/></svg><span><span lang="ru">Русский, казахский и английский</span><span lang="kk">Қазақ, орыс және ағылшын тілдері</span><span lang="en">Kazakh, Russian and English</span></span></li>
+      </ul>
+    </div>
+    <div class="phones">
+      <img src="app-main.webp" width="540" height="1080" loading="lazy" onerror="this.remove()" alt="Приложение ZMK: кнопка «Открыть»">
+      <img src="app-opened.webp" width="540" height="1080" loading="lazy" onerror="this.remove()" alt="Приложение ZMK: шлагбаум открыт">
+    </div>
+  </div>
+</section>
+
+<section id="detector">
+  <h2><span lang="ru">SOS-детектор</span><span lang="kk">SOS-детектор</span><span lang="en">SOS detector</span></h2>
+  <p class="sub"><span lang="ru">Скорая, полиция и пожарные проезжают без звонков охране.</span><span lang="kk">Жедел жәрдем, полиция және өрт сөндірушілер күзетке қоңырау шалмай өтеді.</span><span lang="en">Ambulances, police and fire crews get through without calling the guard.</span></p>
+  <div class="grid c3">
+    <div class="card"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M2 12h2l2-6 3 12 3-9 2 6 2-3h6"/></svg></div><h3><span lang="ru">Слышит сирену</span><span lang="kk">Сиренаны естиді</span><span lang="en">Hears the siren</span></h3><p><span lang="ru">Узнаёт сигналы скорой, полиции, пожарных и других экстренных служб.</span><span lang="kk">Жедел жәрдемнің, полицияның, өрт сөндірушілердің және басқа шұғыл қызметтердің дабылдарын таниды.</span><span lang="en">Recognises the signals of ambulances, police, fire crews and other emergency services.</span></p></div>
+    <div class="card"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h6M6 21V11"/><path d="M6 11l14-7"/><circle cx="6" cy="11" r="1.5"/></svg></div><h3><span lang="ru">Открывает шлагбаум</span><span lang="kk">Шлагбаумды ашады</span><span lang="en">Opens the barrier</span></h3><p><span lang="ru">Подаёт команду «Открыть» на блок управления шлагбаума.</span><span lang="kk">Шлагбаумның басқару блогына «Ашу» пәрменін береді.</span><span lang="en">Sends the "Open" command to the barrier's control unit.</span></p></div>
+    <div class="card"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3><span lang="ru">Питание 220 В</span><span lang="kk">220 В қуат</span><span lang="en">220 V power</span></h3><p><span lang="ru">Монтаж и подключение выполняет специалист.</span><span lang="kk">Орнату мен қосуды маман орындайды.</span><span lang="en">Installation and wiring are done by a specialist.</span></p></div>
+  </div>
+  <p class="note"><span lang="ru">Работа зависит от правильного размещения и подключения. Устройство не заменяет официальные системы экстренного оповещения.</span><span lang="kk">Жұмысы дұрыс орналастыру мен қосуға байланысты. Құрылғы ресми төтенше хабарлау жүйелерін алмастырмайды.</span><span lang="en">Operation depends on correct placement and wiring. The device does not replace official emergency alert systems.</span></p>
+</section>
+
+<section>
+  <h2><span lang="ru">Установка</span><span lang="kk">Орнату</span><span lang="en">Installation</span></h2>
+  <div class="grid c3">
+    <div class="card"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h6M6 21V11"/><path d="M6 11l14-7"/></svg></div><h3><span lang="ru">Шлагбаумы и ворота</span><span lang="kk">Шлагбаумдар мен қақпалар</span><span lang="en">Barriers and gates</span></h3><p><span lang="ru">Подключение к входу «Открыть» блока управления.</span><span lang="kk">Басқару блогының «Ашу» кірісіне қосылады.</span><span lang="en">Connects to the "Open" input of the control unit.</span></p></div>
+    <div class="card"><div class="ico"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="1.5"/><circle cx="15" cy="12" r="1"/></svg></div><h3><span lang="ru">Калитки и двери</span><span lang="kk">Қақпашалар мен есіктер</span><span lang="en">Wickets and doors</span></h3><p><span lang="ru">Подключение к электрозамку — зависит от его типа.</span><span lang="kk">Электр құлпына қосылады — түріне байланысты.</span><span lang="en">Connects to the electric lock, depending on its type.</span></p></div>
+    <div class="card"><div class="ico"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div><h3><span lang="ru">Проверим заранее</span><span lang="kk">Алдын ала тексереміз</span><span lang="en">We check first</span></h3><p><span lang="ru">Пришлите модель или фото блока управления — скажем, подойдёт ли ZMK.</span><span lang="kk">Басқару блогының моделін не фотосын жіберіңіз — ZMK сәйкес келе ме, айтамыз.</span><span lang="en">Send the model or a photo of the control unit and we will tell you if ZMK fits.</span></p></div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <h2><span lang="ru">Вопросы</span><span lang="kk">Сұрақтар</span><span lang="en">Questions</span></h2>
+  <details><summary><span lang="ru">Нужен ли интернет?</span><span lang="kk">Интернет керек пе?</span><span lang="en">Is internet needed?</span></summary><p><span lang="ru">Нет. Телефон связывается с устройством по Bluetooth, SOS-детектор работает сам.</span><span lang="kk">Жоқ. Телефон құрылғымен Bluetooth арқылы байланысады, SOS-детектор өзі жұмыс істейді.</span><span lang="en">No. The phone talks to the device over Bluetooth, and the SOS detector works on its own.</span></p></details>
+  <details><summary><span lang="ru">Подойдёт ли к моему шлагбауму?</span><span lang="kk">Менің шлагбаумыма сәйкес келе ме?</span><span lang="en">Will it work with my barrier?</span></summary><p><span lang="ru">Нужен вход управления «Открыть». Пришлите модель или фото маркировки блока — проверим.</span><span lang="kk">«Ашу» басқару кірісі керек. Блоктың моделін не жапсырмасының фотосын жіберіңіз — тексереміз.</span><span lang="en">It needs an "Open" control input. Send the model or a photo of the unit's label and we will check.</span></p></details>
+  <details><summary><span lang="ru">Сколько устройств можно подключить?</span><span lang="kk">Қанша құрылғы қосуға болады?</span><span lang="en">How many devices can I add?</span></summary><p><span lang="ru">В приложении можно добавить несколько устройств — например, шлагбаум, ворота и калитку.</span><span lang="kk">Қосымшаға бірнеше құрылғы қосуға болады — мысалы, шлагбаум, қақпа және қақпаша.</span><span lang="en">You can add several devices in the app, for example a barrier, gates and a wicket.</span></p></details>
+  <details><summary><span lang="ru">Чем отличаются три варианта?</span><span lang="kk">Үш нұсқаның айырмашылығы неде?</span><span lang="en">How do the three options differ?</span></summary><p><span lang="ru">«Управление с телефона» — открытие из приложения. «Телефон + SOS» — плюс открытие по сирене. «SOS-детектор» — только по сирене, со смартфона не открывается.</span><span lang="kk">«Телефоннан басқару» — қосымшадан ашу. «Телефон + SOS» — оған қоса сирена бойынша ашу. «SOS-детектор» — тек сирена бойынша, смартфоннан ашылмайды.</span><span lang="en">"Phone control" opens from the app. "Phone + SOS" adds opening on a siren. "SOS detector" opens on a siren only, not from a phone.</span></p></details>
+</section>
+
+<section id="order" class="cta">
+  <h2><span lang="ru">Узнайте цену и закажите</span><span lang="kk">Бағасын біліп, тапсырыс беріңіз</span><span lang="en">Get a price and order</span></h2>
+  <p class="sub"><span lang="ru">Расскажите, чем нужно управлять, — ответим и подскажем с установкой.</span><span lang="kk">Нені басқару керегін айтыңыз — жауап беріп, орнатуға көмектесеміз.</span><span lang="en">Tell us what you need to control and we will help with installation.</span></p>
+  <div class="btns">
+    <a class="btn main" data-wa="" href="https://wa.me/77072669154" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn" href="https://t.me/Zmk_kz" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn" href="tel:+77072669154"><span lang="ru">Позвонить</span><span lang="kk">Қоңырау шалу</span><span lang="en">Call</span></a>
+    <a class="btn" href="mailto:zmkalexandr@gmail.com?subject=ZMK"><span lang="ru">Почта</span><span lang="kk">Пошта</span><span lang="en">Email</span></a>
+  </div>
+  <p class="contacts"><span lang="ru">Офис в Алматы · отправляем по всему Казахстану</span><span lang="kk">Кеңсе Алматыда · бүкіл Қазақстанға жібереміз</span><span lang="en">Office in Almaty · we ship across Kazakhstan</span><br>Александр · <a href="tel:+77072669154">+7 707 266 91 54</a> (WhatsApp) · Telegram <a href="https://t.me/Zmk_kz" target="_blank" rel="noopener">@Zmk_kz</a> · <a href="mailto:zmkalexandr@gmail.com">zmkalexandr@gmail.com</a></p>
+</section>
+
+<footer>
+  <span>© 2026 ZMK</span>
+  <a href="index.html"><span lang="ru">Политика конфиденциальности</span><span lang="kk">Құпиялылық саясаты</span><span lang="en">Privacy policy</span></a>
+</footer>
 </main>
-<footer><span>© 2026 ZMK · <span lang="ru">Система умного доступа</span><span lang="kk">Ақылды қол жеткізу жүйесі</span><span lang="en">Smart access system</span></span><a href="privacy.html"><span lang="ru">Политика конфиденциальности</span><span lang="kk">Құпиялылық саясаты</span><span lang="en">Privacy policy</span></a></footer>
+
+<div class="dock">
+  <a class="btn main" data-wa="" href="https://wa.me/77072669154" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn" href="tel:+77072669154"><span lang="ru">Позвонить</span><span lang="kk">Қоңырау</span><span lang="en">Call</span></a>
 </div>
-<script>
-function setLang(l){if(!['ru','kk','en'].includes(l))l='ru';const h=document.documentElement;h.dataset.l=l;h.lang=l;document.querySelectorAll('.langs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.set===l)));try{localStorage.setItem('zmk-lang',l)}catch(e){/* хранилище недоступно — язык не запомнится */}}
-document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.set)));
-try{const s=localStorage.getItem('zmk-lang');if(s)setLang(s)}catch(e){/* хранилище недоступно — остаётся русский */}
-</script></body></html>
+
+<script src="zmk.js" defer></script>
+</body>
+</html>
