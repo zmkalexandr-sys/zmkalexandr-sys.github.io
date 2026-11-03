@@ -11,7 +11,7 @@ svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke
 header{position:sticky;top:0;z-index:50;background:var(--hdr);box-shadow:0 1px 0 #ffffff14}
 .bar{display:flex;align-items:center;gap:14px;height:56px}
 .brand{display:flex;align-items:center;margin-right:auto;text-decoration:none}
-.px{height:32px;width:auto;display:block;overflow:visible;filter:drop-shadow(0 0 2px #b5ff43) drop-shadow(0 0 7px #b5ff43cc);animation:phos 4s ease-in-out infinite}
+.px{height:38px;width:auto;display:block;overflow:visible;filter:drop-shadow(0 0 3px #39ff14) drop-shadow(0 0 10px #39ff14aa);animation:phos 4s ease-in-out infinite}
 @keyframes phos{0%,100%{opacity:1}48%{opacity:.82}49%{opacity:1}50%{opacity:.9}52%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.px{animation:none}}
 .nav{display:flex;gap:18px}
@@ -19,7 +19,7 @@ header{position:sticky;top:0;z-index:50;background:var(--hdr);box-shadow:0 1px 0
 .nav a:hover{color:var(--lime)}
 .langs{display:flex;gap:4px}
 .langs button{min-width:42px;min-height:36px;font:700 12px system-ui,sans-serif;color:#b9c7d6;background:none;border:1px solid #2a3d55;border-radius:8px;cursor:pointer}
-.langs button[aria-pressed=true]{background:var(--lime);border-color:var(--lime);color:#071100}
+.langs button[aria-pressed=true]{background:#39ff14;border-color:#39ff14;color:#071100}
 .burger{display:none;width:42px;height:40px;border:1px solid #2a3d55;border-radius:8px;background:none;color:#fff;cursor:pointer;place-items:center}
 @media(max-width:920px){
  .burger{display:grid}
@@ -120,3 +120,15 @@ footer a{color:var(--muted)}
 .prod .note{margin:0 0 12px;font-size:13px}
 .ico.num{font:800 17px system-ui,sans-serif}
 @media(max-width:600px){.prod .media{height:170px}}
+/* раздел «Приложение»: значок и лента скриншотов */
+.appbox{display:grid;gap:14px;align-items:start}
+@media(min-width:860px){.appbox{grid-template-columns:200px 1fr}}
+.appicon{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+@media(min-width:860px){.appicon{flex-direction:column;text-align:center}}
+.appicon img{width:96px;height:96px;border-radius:22px;box-shadow:0 4px 14px #0003;flex:none}
+@media(min-width:860px){.appicon img{width:140px;height:140px;border-radius:30px}}
+.appicon p{margin:0;font-size:14px;color:var(--muted)}
+.shots{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(120px,1fr);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.shots figure{margin:0;scroll-snap-align:start;text-align:center}
+.shots img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid #c9d5e0}
+.shots figcaption{font-size:13px;color:var(--muted);margin-top:4px}
