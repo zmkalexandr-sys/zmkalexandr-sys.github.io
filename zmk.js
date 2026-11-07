@@ -39,7 +39,7 @@ updateWa();
 
 /** Лента разделов: отметить текущую страницу и показать её пункт в ленте. */
 (function markCurrent(){
-  const here = location.pathname.split('/').pop() || 'sos.html';
+  const here = (location.pathname.split('/').pop().replace(/^index\.html$/, '') || 'sos.html');
   const strip = document.getElementById('nav');
   if (!strip) return;
   const link = [...strip.querySelectorAll('a')].find(a => a.getAttribute('href').split('#')[0] === here);
@@ -67,7 +67,7 @@ updateWa();
     const p = (a.getAttribute('href') || '').split('#')[0];
     if (p && /\.html$/.test(p) && !pages.includes(p)) pages.push(p);
   });
-  const here = location.pathname.split('/').pop() || 'sos.html';
+  const here = (location.pathname.split('/').pop().replace(/^index\.html$/, '') || 'sos.html');
   const idx = pages.indexOf(here);
   if (idx < 0) return;
   const prev = idx > 0 ? pages[idx - 1] : null, next = idx < pages.length - 1 ? pages[idx + 1] : null;

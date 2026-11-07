@@ -227,3 +227,7 @@ main.swiping{will-change:transform}
 /* Ссылки на инструкции под фото: удобная зона нажатия для пальца */
 .gal figcaption .howto{display:block;padding:9px 0;line-height:1.35;border-top:1px solid #ffffff14}
 .gal figcaption .howto:first-of-type{margin-top:6px}
+
+/* Главная: ссылка на политику приложения (пока App Store ведёт на корень сайта) */
+.policy-bar{margin:14px 0 0;padding:10px 14px;border:1px solid #dde5ec;border-radius:12px;background:#fff;font-size:15px}
+.policy-bar a{font-weight:600;color:#16702f}
