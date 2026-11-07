@@ -231,3 +231,9 @@ main.swiping{will-change:transform}
 /* Главная: ссылка на политику приложения (пока App Store ведёт на корень сайта) */
 .policy-bar{margin:14px 0 0;padding:10px 14px;border:1px solid #dde5ec;border-radius:12px;background:#fff;font-size:15px}
 .policy-bar a{font-weight:600;color:#16702f}
+
+/* Страница «Инструкции» */
+.instr{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.instr li{background:#fff;border:1px solid #dde5ec;border-radius:12px;padding:12px 14px;line-height:1.5}
+.instr .howto{color:#16702f;font-weight:600}
+.instr .more{font-size:13px;color:#55667a;margin-left:6px}
