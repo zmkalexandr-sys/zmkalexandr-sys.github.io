@@ -1,5 +1,5 @@
 /* ZMK — светлая плотная тема. Тёмная только шапка: на ней светится пиксельный логотип. */
-:root{--bg:#f3f6f9;--card:#fff;--line:#dde5ec;--text:#0f1b2a;--muted:#55667a;--acc:#1f8a3c;--acc2:#16702f;--lime:#b5ff43;--hdr:#0b1626;--red:#e0364b}
+:root{--bg:#f3f6f9;--card:#fff;--line:#dde5ec;--text:#0f1b2a;--muted:#55667a;--acc:#1e863a;--acc2:#16702f;--lime:#b5ff43;--hdr:#0b1626;--red:#e0364b}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
@@ -58,7 +58,7 @@ h2+.grid,h2+.checks,h2+.app{margin-top:12px}
 .card p{margin:0;color:var(--muted);font-size:14.5px}
 .ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#e6f5e4;color:var(--acc)}
 .svc{display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s}
-.svc:hover{border-color:var(--acc);box-shadow:0 4px 14px #1f8a3c22}
+.svc:hover{border-color:var(--acc);box-shadow:0 4px 14px #1e863a22}
 .svc h3{margin:0 0 2px}
 /* варианты */
 .model{display:flex;flex-direction:column}
@@ -79,9 +79,9 @@ h2+.grid,h2+.checks,h2+.app{margin-top:12px}
 .phones img{width:46%;max-width:150px;height:auto;border-radius:16px;border:2px solid #c9d5e0}
 .note{margin-top:10px;padding:10px 14px;border-left:3px solid var(--acc);background:#fff;color:#3a4b5e;border-radius:0 10px 10px 0;font-size:14px}
 /* вопросы */
-.faq details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 8px}
-.faq summary{cursor:pointer;font-weight:700;font-size:15.5px}
-.faq p{color:var(--muted);margin:6px 0 0;font-size:14.5px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 14px;margin:0 0 8px}
+.faq summary{cursor:pointer;font-weight:700;font-size:15.5px;padding:10px 0}
+.faq p{color:var(--muted);margin:0 0 12px;font-size:14.5px}
 /* заказ */
 .cta{text-align:center;background:#fff;border:1px solid var(--line);border-top:4px solid var(--acc);border-radius:14px;padding:22px 16px;margin-top:28px}
 .cta .sub{margin-bottom:14px}
@@ -197,8 +197,8 @@ footer a{color:var(--muted)}
 details.fold>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;-webkit-tap-highlight-color:transparent}
 details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary h2{margin:0}
-details.fold .chev{flex:none;width:26px;height:26px;fill:none;stroke:var(--acc);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
-details.fold[open] .chev{transform:rotate(180deg)}
+details.fold>summary::after{content:"";flex:none;width:26px;height:26px;background:var(--acc);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .2s}
+details.fold[open]>summary::after{transform:rotate(180deg)}
 details.fold[open]>summary{margin-bottom:12px}
 /* Перелистывание страниц пальцем: соседняя страница выезжает следом */
 #peek{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg,#f2f5f8);overflow:hidden;pointer-events:none;will-change:transform;box-shadow:0 0 24px #0003}
@@ -235,10 +235,15 @@ main.swiping{will-change:transform}
 /* Страница «Инструкции» */
 .instr{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .instr li{background:#fff;border:1px solid #dde5ec;border-radius:12px;padding:12px 14px;line-height:1.5}
-.instr .howto{color:#16702f;font-weight:600}
-.instr .more{font-size:13px;color:#55667a;margin-left:6px}
+.instr .howto{padding:5px 0;color:#16702f;font-weight:600}
+.instr .more{font-size:13px;color:#55667a;margin-left:2px;padding:10px 4px}
 
 /* Справочник инструкций: фото слева от названия */
 .instr li{display:flex;gap:12px;align-items:center}
 .instr .ithumb{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid #eef2f6}
 .instr li>div{min-width:0}
+
+/* Кнопка App Store под значком приложения: на телефоне — отдельной строкой во всю ширину */
+.appicon{flex-wrap:wrap}
+.appicon .store{flex:1 1 100%;width:100%;margin-top:4px}
+.appicon .soon{flex:1 1 100%;font-size:13px}
