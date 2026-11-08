@@ -40,9 +40,11 @@ updateWa();
 /** Лента разделов: отметить текущую страницу и показать её пункт в ленте. */
 (function markCurrent(){
   const here = (location.pathname.split('/').pop().replace(/^index\.html$/, '') || 'sos.html');
+  /* Подстраницы раздела подсвечивают свой пункт меню */
+  const parent = {'raspashnye.html': 'vorota.html', 'otkatnye.html': 'vorota.html'}[here];
   const strip = document.getElementById('nav');
   if (!strip) return;
-  const link = [...strip.querySelectorAll('a')].find(a => a.getAttribute('href').split('#')[0] === here);
+  const link = [...strip.querySelectorAll('a')].find(a => a.getAttribute('href').split('#')[0] === (parent || here));
   if (!link) return;
   link.classList.add('on'); link.setAttribute('aria-current', 'page');
   strip.scrollLeft = Math.max(0, link.offsetLeft - (strip.clientWidth - link.offsetWidth) / 2);
