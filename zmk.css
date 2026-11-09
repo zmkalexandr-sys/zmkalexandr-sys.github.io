@@ -1,249 +1,257 @@
-/* ZMK — светлая плотная тема. Тёмная только шапка: на ней светится пиксельный логотип. */
-:root{--bg:#f3f6f9;--card:#fff;--line:#dde5ec;--text:#0f1b2a;--muted:#55667a;--acc:#1e863a;--acc2:#16702f;--lime:#b5ff43;--hdr:#0b1626;--red:#e0364b}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-a{color:var(--acc2)}
-html[data-l=ru] [lang=kk],html[data-l=ru] [lang=en],html[data-l=kk] [lang=ru],html[data-l=kk] [lang=en],html[data-l=en] [lang=ru],html[data-l=en] [lang=kk]{display:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-/* шапка */
-header{position:sticky;top:0;z-index:50;background:var(--hdr);box-shadow:0 1px 0 #ffffff14}
-.bar{display:flex;align-items:center;gap:14px;height:56px}
-.brand{display:flex;align-items:center;margin-right:auto;text-decoration:none}
-.px{height:38px;width:auto;display:block;overflow:visible;filter:drop-shadow(0 0 3px #39ff14) drop-shadow(0 0 10px #39ff14aa);animation:phos 4s ease-in-out infinite}
-@keyframes phos{0%,100%{opacity:1}48%{opacity:.82}49%{opacity:1}50%{opacity:.9}52%{opacity:1}}
-@media(prefers-reduced-motion:reduce){.px{animation:none}}
-.nav{display:flex;gap:18px}
-.nav a{text-decoration:none;color:#d6e1ec;font-size:15px;white-space:nowrap}
-.nav a:hover{color:var(--lime)}
-.langs{display:flex;gap:4px}
-.langs button{min-width:42px;min-height:36px;font:700 12px system-ui,sans-serif;color:#b9c7d6;background:none;border:1px solid #2a3d55;border-radius:8px;cursor:pointer}
-.langs button[aria-pressed=true]{background:#39ff14;border-color:#39ff14;color:#071100}
-.burger{display:none;width:42px;height:40px;border:1px solid #2a3d55;border-radius:8px;background:none;color:#fff;cursor:pointer;place-items:center}
-@media(max-width:920px){
- .burger{display:grid}
- .nav{display:none;position:absolute;left:0;right:0;top:56px;flex-direction:column;gap:0;background:var(--hdr);padding:4px 16px 10px}
- .nav.open{display:flex}
- .nav a{padding:12px 0;font-size:17px;border-bottom:1px solid #ffffff12}
+/* ZMK — оформление в стиле приложения ZMK.
+   Тёмно-синий фон с мягким свечением, стеклянные карточки с крупным скруглением,
+   зелёный акцент (как кнопки приложения). Цвета устройств — как в приложении:
+   Bluetooth — зелёный, Bluetooth + SOS — фиолетовый, SOS — жёлтый.
+   Контраст текста везде не ниже 4.5:1. */
+:root{
+ color-scheme:dark;
+ --bg:#081020;                    /* фон, как в приложении */
+ --glass:rgba(255,255,255,.045);  /* стеклянная карточка */
+ --glass2:rgba(255,255,255,.075); /* карточка при наведении */
+ --line:rgba(255,255,255,.12);    /* тонкая рамка */
+ --line2:rgba(255,255,255,.22);   /* рамка кнопок */
+ --text:#eef3f9;                  /* заголовки и основной текст */
+ --soft:#c7d2e3;                  /* текст абзацев */
+ --muted:#8a9bb5;                 /* подписи */
+ --acc:#4ade80;                   /* зелёный, как кнопки приложения */
+ --acc2:#86efac;                  /* зелёный при наведении */
+ --acc-on:#052e16;                /* текст на зелёном */
+ --acc-dim:rgba(74,222,128,.16);
+ --violet:#c4b5fd;--yellow:#fde047;--blue:#93c5fd;
+ --hdr:rgba(8,16,32,.86)
 }
-/* первый экран */
-.hero{display:grid;gap:20px;align-items:center;padding:24px 0 8px}
-@media(min-width:860px){.hero{grid-template-columns:1.15fr .85fr;gap:32px;padding:32px 0 8px}}
-h1{font-size:clamp(26px,3.4vw,38px);line-height:1.15;letter-spacing:-.5px;margin:0 0 10px}
-h1 em{font-style:normal;color:inherit}
-.lead{font-size:17px;color:#2c3d50;margin:0 0 14px;max-width:38em}
-.checks{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:6px}
-.checks li{display:flex;gap:8px;align-items:flex-start;font-size:15px}
-.checks .i{color:var(--acc);margin-top:1px;width:20px;height:20px}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+/* Мягкое свечение фона, как в приложении (под всем содержимым) */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(70% 45% at 0% 0%,rgba(34,197,94,.14),transparent 70%),radial-gradient(70% 45% at 100% 100%,rgba(99,102,241,.16),transparent 70%)}
+::selection{background:rgba(74,222,128,.35)}
+a{color:var(--acc)}
+a:hover{color:var(--acc2)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+html[data-l=ru] [lang=kk],html[data-l=ru] [lang=en],html[data-l=kk] [lang=ru],html[data-l=kk] [lang=en],html[data-l=en] [lang=ru],html[data-l=en] [lang=kk]{display:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* Текст только для экранного диктора */
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ── Шапка: одна строка — значок, разделы, языки, меню ── */
+header{position:sticky;top:0;z-index:50;background:var(--hdr);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+.bar{position:relative;display:flex;align-items:center;gap:12px;height:62px}
+.brand{display:flex;align-items:center;margin-right:auto;text-decoration:none}
+.brand-ico{width:40px;height:40px;display:block;border-radius:11px;box-shadow:0 0 0 1px rgba(255,255,255,.1)}
+.nav{display:flex;gap:2px}
+.nav a{padding:8px 10px;border-radius:10px;text-decoration:none;color:#c3cfdb;font-size:15px;white-space:nowrap}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--acc);border-radius:0}
+/* Языки как в приложении: РУС · ҚАЗ · ENG */
+.langs{display:flex;align-items:center}
+.langs button{min-height:44px;padding:0 6px;font:700 12px/1 system-ui,sans-serif;letter-spacing:.06em;color:var(--muted);background:none;border:0;cursor:pointer}
+.langs button+button::before{content:"·";margin-right:6px;color:#4b5b75;font-weight:400}
+.langs button:hover,.langs button[aria-pressed=true]{color:#fff}
+.burger{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.04);color:#fff;cursor:pointer;place-items:center}
+@media(max-width:1100px){
+ .burger{display:grid}
+ /* Разделы — списком под шапкой по кнопке меню */
+ .nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;padding:6px 18px 14px;background:#081020;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 18px 30px rgba(0,0,0,.45)}
+ .nav.open{display:flex}
+ .nav a{padding:14px 2px;font-size:17px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.07)}
+ .nav a:last-child{border-bottom:0}
+ .nav a:hover{background:none}
+ .nav a.on{box-shadow:none;color:var(--acc)}
+}
+/* Главная: ссылка на политику приложения — тонкой строкой */
+.policy-bar{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.policy-bar a{padding:10px 0;color:var(--muted)}
+.policy-bar a:hover{color:#fff}
+
+/* ── Первый экран ── */
+.hero{display:grid;gap:22px;align-items:center;padding:24px 0 6px}
+@media(min-width:860px){.hero{grid-template-columns:1.1fr .9fr;gap:40px;padding:44px 0 10px}}
+.hero>*{min-width:0}
+.hero.one{display:block}
+.kicker{display:inline-flex;align-items:center;min-height:26px;margin:0 0 14px;padding:4px 12px;border-radius:999px;background:var(--acc);color:var(--acc-on);font:800 11px/1.2 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.12;letter-spacing:-.02em;margin:0 0 12px;font-weight:800}
+h1 em{font-style:normal;color:var(--acc)}
+.lead{font-size:17px;color:var(--soft);margin:0 0 18px;max-width:40em}
+.hero .gal{align-self:center}
+/* Карточка «Шлагбаум» с кнопкой «Открыть», как экран приложения */
+.appcard{position:relative;height:270px;border-radius:30px;border:1px solid rgba(74,222,128,.45);background:linear-gradient(180deg,rgba(34,197,94,.3) 0%,rgba(13,148,136,.12) 45%,rgba(16,24,56,.6) 100%);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.ac-top{position:absolute;left:18px;right:18px;top:18px;display:flex;align-items:center;gap:10px}
+.ac-ico{width:42px;height:42px;flex:none;border-radius:12px;background:#22c55e;display:grid;place-items:center;color:#fff}
+.ac-top b{font-size:19px}
+.ac-pill{margin-left:auto;display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--acc);color:var(--acc-on);font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.ac-btn{position:absolute;left:50%;top:60%;width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:50%;background:linear-gradient(135deg,#0e7490,#15803d);box-shadow:0 0 54px rgba(34,197,94,.55);display:grid;place-items:center;color:#fff;font:800 16px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.ac-btn::before,.ac-btn::after{content:"";position:absolute;inset:-13px;border-radius:50%;border:2px solid rgba(74,222,128,.45)}
+.ac-btn::after{inset:-27px;border-color:rgba(74,222,128,.25)}
+@media(min-width:860px){.appcard{height:380px}.ac-btn{width:176px;height:176px;margin:-88px 0 0 -88px;font-size:19px}}
+/* Кнопки трёх устройств: цвета как в приложении */
+.devs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px;max-width:520px}
+.devs a{display:flex;align-items:center;justify-content:center;min-height:46px;padding:6px 8px;border-radius:14px;border:1px solid var(--line2);font-weight:700;font-size:14px;line-height:1.2;text-align:center;text-decoration:none}
+.devs a:nth-child(1){border-color:rgba(74,222,128,.6);color:var(--acc)}
+.devs a:nth-child(2){border-color:rgba(196,181,253,.55);color:var(--violet)}
+.devs a:nth-child(3){border-color:rgba(253,224,71,.55);color:var(--yellow)}
+.devs a:hover{background:rgba(255,255,255,.06)}
+
+/* ── Кнопки: «таблетки», как в приложении ── */
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:10px;font:700 15px system-ui,sans-serif;text-decoration:none;color:var(--text);border:1px solid #c9d5e0;background:#fff}
-.btn:hover{border-color:var(--acc)}
-.btn.main{background:var(--acc);border-color:var(--acc);color:#fff}
-.btn.main:hover{background:var(--acc2)}
-.photo{position:relative;border-radius:16px;overflow:hidden;background:#0b1626;box-shadow:0 6px 24px #0f1b2a1f}
-.photo img{display:block;width:100%;height:auto}
-.photo .tag{position:absolute;left:10px;top:10px;display:inline-flex;align-items:center;gap:6px;margin:0;font:700 12px system-ui,sans-serif;color:#fff;background:#000a;border-radius:8px;padding:5px 10px}
-.photo .tag b{width:8px;height:8px;border-radius:50%;background:var(--red)}
-/* разделы */
-section{padding:28px 0 0}
-h2{font-size:clamp(22px,2.6vw,28px);line-height:1.2;margin:0 0 4px}
-.sub{color:var(--muted);margin:0 0 14px;font-size:15px}
-h2+.grid,h2+.checks,h2+.app{margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;border-radius:999px;font:700 15px/1.2 system-ui,sans-serif;text-decoration:none;color:#fff;border:1px solid var(--line2);background:rgba(255,255,255,.03);transition:background .15s,border-color .15s}
+.btn:hover{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.07)}
+.btn.main{background:var(--acc);border-color:var(--acc);color:var(--acc-on)}
+.btn.main:hover{background:var(--acc2);border-color:var(--acc2);color:var(--acc-on)}
+
+/* ── Разделы ── */
+section{padding:40px 0 0}
+h2{font-size:clamp(23px,2.8vw,30px);line-height:1.2;letter-spacing:-.01em;margin:0 0 6px;font-weight:800}
+.sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+h2+.grid,h2+.checks{margin-top:14px}
 .grid{display:grid;gap:12px}
+.grid>*{min-width:0}
 @media(min-width:600px){.grid.c4,.grid.c3{grid-template-columns:1fr 1fr}}
 @media(min-width:900px){.grid.c3{grid-template-columns:repeat(3,1fr)}.grid.c4{grid-template-columns:repeat(4,1fr)}.grid.c2{grid-template-columns:1fr 1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.card h3{margin:8px 0 4px;font-size:17px;line-height:1.25}
-.card p{margin:0;color:var(--muted);font-size:14.5px}
-.ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#e6f5e4;color:var(--acc)}
-.svc{display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s}
-.svc:hover{border-color:var(--acc);box-shadow:0 4px 14px #1e863a22}
-.svc h3{margin:0 0 2px}
-/* варианты */
-.model{display:flex;flex-direction:column}
-.model.best{border:2px solid var(--acc)}
-.pic{display:block;width:100%;height:auto;max-height:150px;border-radius:10px;margin:0 0 10px;background:#0a1626}
-.badge{align-self:flex-start;font:700 11px system-ui,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:3px 9px;background:#e9eef3;color:#33465b}
-.best .badge{background:var(--acc);color:#fff}
-.model h3{font-size:18px;margin:8px 0 4px}
-.list{list-style:none;margin:0 0 12px;padding:0;flex:1}
-.list li{display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:14.5px}
-.list .i{width:18px;height:18px;margin-top:2px;color:var(--acc)}
-.list .no{color:var(--muted)}.list .no .i{color:#9aa8b6}
-.model .btn{width:100%}
-/* приложение */
-.app{display:grid;gap:16px;align-items:center}
-@media(min-width:860px){.app{grid-template-columns:1.3fr .7fr}}
-.phones{display:flex;justify-content:center;gap:10px}
-.phones img{width:46%;max-width:150px;height:auto;border-radius:16px;border:2px solid #c9d5e0}
-.note{margin-top:10px;padding:10px 14px;border-left:3px solid var(--acc);background:#fff;color:#3a4b5e;border-radius:0 10px 10px 0;font-size:14px}
-/* вопросы */
-.faq details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 14px;margin:0 0 8px}
-.faq summary{cursor:pointer;font-weight:700;font-size:15.5px;padding:10px 0}
-.faq p{color:var(--muted);margin:0 0 12px;font-size:14.5px}
-/* заказ */
-.cta{text-align:center;background:#fff;border:1px solid var(--line);border-top:4px solid var(--acc);border-radius:14px;padding:22px 16px;margin-top:28px}
-.cta .sub{margin-bottom:14px}
-.cta .btns{justify-content:center}
-.contacts{color:var(--muted);font-size:14.5px;margin:14px 0 0}
-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;padding:16px 0 22px;margin-top:28px}
-footer a{color:var(--muted)}
-/* кнопки внизу на телефоне */
-.dock{display:none}
-@media(max-width:760px){
- body{padding-bottom:70px}
- .dock{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#fffffff2;border-top:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
- .dock .btn{flex:1;min-height:46px}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.wave{animation:pulse 2.4s ease-out infinite}.w2{animation-delay:.4s}.w3{animation-delay:.8s}
-@keyframes pulse{0%{opacity:0}25%{opacity:.9}100%{opacity:0}}
-@media(prefers-reduced-motion:reduce){.wave{animation:none}}
-/* компактные карточки: значок слева, текст справа */
-.card:has(>.ico){display:grid;grid-template-columns:38px 1fr;column-gap:12px;align-items:start}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:20px;padding:16px 18px}
+.card h3{margin:8px 0 4px;font-size:17px;line-height:1.3}
+.card p{margin:0;color:var(--soft);font-size:14.5px}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--acc-dim);color:var(--acc)}
+.ico.num{font:800 17px system-ui,sans-serif}
+/* Карточка со значком: значок слева, текст справа */
+.card:has(>.ico){display:grid;grid-template-columns:40px 1fr;column-gap:14px;align-items:start}
 .card:has(>.ico)>.ico{grid-row:span 2}
 .card:has(>.ico) h3{margin:0 0 2px}
-@media(max-width:600px){.pic{max-height:110px}.phones img{max-width:120px}section{padding-top:22px}}
-/* главная: первый экран без рисунка, карточки устройств, шаги */
-.hero.one{display:block;padding-bottom:0}
-.hero.one .lead{max-width:52em}
-.prod{display:flex;flex-direction:column;padding:0;overflow:hidden}
-.prod .media{position:relative;background:#0b1626;display:flex;justify-content:center;align-items:center;gap:8px;height:200px;padding:12px}
-.prod .media img{height:100%;width:auto;border-radius:10px}
-.prod .media.photo,.prod .media.combo{padding:0}
-.prod .media.photo img,.prod .media.combo>img:first-child{width:100%;height:100%;object-fit:cover;border-radius:0}
-.prod .media.combo .ph{position:absolute;right:10px;bottom:10px;height:78%;width:auto;border:2px solid #fff;border-radius:10px;box-shadow:0 4px 14px #0008}
-.prod .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
-.prod h3{font-size:19px;margin:8px 0 2px}
-.prod .sub{margin:0 0 6px;font-size:14.5px}
-.prod .note{margin:0 0 12px;font-size:13px}
-.ico.num{font:800 17px system-ui,sans-serif}
-@media(max-width:600px){.prod .media{height:170px}}
-/* раздел «Приложение»: значок и лента скриншотов */
-.appbox{display:grid;gap:14px;align-items:start}
-@media(min-width:860px){.appbox{grid-template-columns:200px 1fr}}
-.appicon{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
-@media(min-width:860px){.appicon{flex-direction:column;text-align:center}}
-.appicon img{width:96px;height:96px;border-radius:22px;box-shadow:0 4px 14px #0003;flex:none}
-@media(min-width:860px){.appicon img{width:140px;height:140px;border-radius:30px}}
-.appicon p{margin:0;font-size:14px;color:var(--muted)}
-.shots{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(120px,1fr);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
-.shots figure{margin:0;scroll-snap-align:start;text-align:center}
-.shots img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid #c9d5e0}
-.shots figcaption{font-size:13px;color:var(--muted);margin-top:4px}
-@media(min-width:600px){.grid.c5{grid-template-columns:1fr 1fr}}
+.note{margin-top:12px;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--soft);font-size:14px}
+.checks{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:8px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--soft)}
+.checks .i{color:var(--acc);margin-top:2px;width:20px;height:20px}
+
+/* Услуги — строками, как настройки в приложении: значок, название, стрелка */
+.grid.c5{grid-template-columns:1fr;gap:8px}
+@media(min-width:700px){.grid.c5{grid-template-columns:1fr 1fr}}
 @media(min-width:1000px){.grid.c5{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1200px){.grid.c5{grid-template-columns:repeat(5,1fr)}}
-.grid>*{min-width:0}
-@media(max-width:1100px){.burger{display:grid}.nav{display:none;position:absolute;left:0;right:0;top:56px;flex-direction:column;gap:0;background:var(--hdr);padding:4px 16px 10px}.nav.open{display:flex}.nav a{padding:12px 0;font-size:17px;border-bottom:1px solid #ffffff12}}
+.card.svc{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:16px;text-decoration:none;color:var(--text);transition:border-color .15s,background .15s}
+.svc>div:last-child{flex:1;min-width:0}
+.svc h3{margin:0 0 2px;font-size:16px}
+.svc p{color:var(--muted);font-size:13.5px}
+.svc::after{content:"";flex:none;width:18px;height:18px;background:var(--muted);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
+.card.svc:hover{border-color:rgba(74,222,128,.5);background:var(--glass2);color:var(--text)}
+.svc[href="vorota.html"] .ico{background:rgba(167,139,250,.18);color:var(--violet)}
+.svc[href="domofon.html"] .ico{background:rgba(147,197,253,.18);color:var(--blue)}
+.svc[href="petli.html"] .ico{background:rgba(253,224,71,.16);color:var(--yellow)}
+.svc[href="instrukcii.html"] .ico{background:rgba(255,255,255,.08);color:#e2e8f0}
 
-/* Быстрые ссылки на разделы в первом экране главной */
-.quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.quick a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font-weight:600;font-size:14.5px;text-decoration:none}
-.quick a:hover{border-color:var(--acc);color:var(--acc2)}
-/* Подвал на телефоне: ссылки крупнее, чтобы удобно попадать пальцем */
-@media(max-width:600px){footer a{display:inline-block;padding:9px 0}}
-/* Фото в первом экране не должно растягивать сетку на телефоне */
-.hero>*{min-width:0}
+/* ── Продукция ZMK: у каждого устройства свой цвет, как в приложении ── */
+.prod{--c:var(--acc);--c-on:var(--acc-on);--tint:rgba(34,197,94,.24);--edge:rgba(74,222,128,.45);display:flex;flex-direction:column;padding:12px;overflow:hidden;border-radius:28px;border-color:var(--edge);background:linear-gradient(180deg,var(--tint) 0%,rgba(16,24,56,.55) 65%)}
+#combo{--c:var(--violet);--c-on:#2e1065;--tint:rgba(124,58,237,.3);--edge:rgba(167,139,250,.5)}
+#sos{--c:var(--yellow);--c-on:#422006;--tint:rgba(234,179,8,.22);--edge:rgba(250,204,21,.5)}
+.prod .media{position:relative;display:flex;justify-content:center;align-items:center;height:200px;border-radius:20px;overflow:hidden;background:#0b1626}
+.prod .media img{display:block;height:100%;width:auto}
+.prod .media.photo img,.prod .media.combo>img:first-child{width:100%;height:100%;object-fit:cover}
+.prod .media.combo .ph{position:absolute;right:10px;bottom:10px;height:78%;width:auto;border:2px solid rgba(255,255,255,.7);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.prod .body{display:flex;flex-direction:column;flex:1;padding:16px 6px 6px}
+.badge{align-self:flex-start;display:inline-flex;align-items:center;min-height:24px;padding:3px 10px;border-radius:999px;background:var(--c,var(--acc));color:var(--c-on,var(--acc-on));font:800 10.5px/1.2 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.prod h3{margin:12px 0 4px;font-size:20px;font-weight:800}
+.prod .sub{margin:0 0 8px;font-size:14.5px;color:var(--soft)}
+.prod .note{margin:0 0 12px;font-size:13px}
+.list{list-style:none;flex:1;margin:6px 0 14px;padding:0}
+.list li{display:flex;gap:10px;align-items:flex-start;margin:7px 0;font-size:14.5px;color:var(--soft)}
+.list .i{width:18px;height:18px;margin-top:3px;color:var(--c,var(--acc));stroke-width:2.5}
+.list .no{color:var(--muted)}
+.list .no .i{color:#5b6b85}
+.prod .btn{width:100%}
+.prod .btn.main{background:transparent;border-color:var(--c);color:var(--c)}
+.prod .btn.main:hover{background:rgba(255,255,255,.06)}
+.prod .btn:not(.main){min-height:44px;border-color:transparent;background:none;color:var(--soft);text-decoration:underline}
+.prod .btn+.btn{margin-top:4px}
+@media(max-width:600px){.prod .media{height:170px}}
 
-/* Лента разделов: на телефоне и планшете всегда видна под шапкой, листается пальцем */
-.nav a.on{color:var(--lime)}
-@media(max-width:1100px){
- .bar{flex-wrap:wrap;height:auto;padding-top:8px;row-gap:8px}
- .nav{display:flex;position:static;order:10;flex:0 0 100%;flex-direction:row;flex-wrap:nowrap;gap:8px;overflow-x:auto;padding:0 0 10px;background:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
- .nav::-webkit-scrollbar{display:none}
- .nav a{flex:0 0 auto;padding:8px 14px;font-size:15px;border:1px solid #2a3d55;border-radius:999px;scroll-snap-align:start}
- .nav a.on{background:#39ff14;border-color:#39ff14;color:#071100}
- /* Три полоски остаются: по нажатию лента раскрывается списком под шапкой */
- .nav.open{position:absolute;left:0;right:0;top:100%;flex-direction:column;flex-wrap:nowrap;gap:0;overflow:visible;padding:4px 16px 10px;background:var(--hdr)}
- .nav.open a{padding:12px 0;font-size:17px;border:0;border-bottom:1px solid #ffffff12;border-radius:0}
- .nav.open a.on{background:none;color:var(--lime)}
-}
+/* ── Приложение: значок, App Store и лента экранов ── */
+.appbox{display:grid;gap:14px;align-items:start}
+@media(min-width:860px){.appbox{grid-template-columns:220px 1fr}}
+.appicon{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px;border-radius:24px;border:1px solid rgba(74,222,128,.35);background:linear-gradient(160deg,rgba(34,197,94,.2),rgba(99,102,241,.16))}
+@media(min-width:860px){.appicon{flex-direction:column;text-align:center}}
+.appicon img{width:80px;height:80px;flex:none;border-radius:20px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+@media(min-width:860px){.appicon img{width:128px;height:128px;border-radius:28px}}
+.appicon p{flex:1;min-width:140px;margin:0;font-size:14px;color:var(--soft)}
+.appicon .store{flex:1 1 100%;width:100%;margin-top:4px}
+.appicon .soon{flex:1 1 100%;font-size:13px;color:var(--muted);text-align:center}
+.shots{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(124px,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin}
+.shots figure{margin:0;scroll-snap-align:start;text-align:center}
+.shots img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.14)}
+.shots figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
 
-/* Лента фото оборудования: листается пальцем */
-.gal{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,300px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
-.gal figure{margin:0;scroll-snap-align:start;border-radius:14px;overflow:hidden;background:#0b1626;box-shadow:0 4px 16px #0f1b2a1f}
+/* ── Лента фото оборудования: листается пальцем ── */
+.gal{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,300px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.gal figure{margin:0;scroll-snap-align:start;border-radius:20px;overflow:hidden;background:var(--glass);border:1px solid var(--line)}
 .gal img{display:block;width:100%;aspect-ratio:4/3;height:auto;object-fit:cover}
-.gal figure.k img{object-fit:contain;background:#fff;padding:8px;box-sizing:border-box}
-.gal figcaption{padding:8px 12px 10px;font-size:14px;color:#e8eef5;line-height:1.35}
-@media(max-width:600px){.gal{grid-auto-columns:78%}}
+.gal figure.k img{object-fit:contain;background:#f1f5f9;padding:8px}
+.gal figcaption{padding:10px 14px 12px;font-size:14px;line-height:1.4;color:#e2e8f0}
+.gal figcaption .howto{display:block;padding:9px 0;line-height:1.35;border-top:1px solid rgba(255,255,255,.08);color:var(--acc);font-weight:700;text-decoration:none}
+.gal figcaption .howto:first-of-type{margin-top:8px}
+@media(max-width:600px){.gal{grid-auto-columns:80%}}
+/* Быстрые ссылки между страницами */
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.quick a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid var(--line2);border-radius:999px;background:rgba(255,255,255,.03);color:#e2e8f0;font-weight:600;font-size:14.5px;text-decoration:none}
+.quick a:hover{border-color:var(--acc);color:var(--acc)}
 
-/* Значок приложения ZMK в шапке вместо надписи */
-.brand-ico{height:46px;width:46px;display:block;border-radius:11px;box-shadow:0 0 0 1px #39ff1440,0 0 12px #39ff1455}
-@media(max-width:600px){.brand-ico{height:40px;width:40px;border-radius:9px}}
-
-/* Ссылка «Инструкция» под фото и фото пульта на странице-инструкции */
-.gal figcaption .howto{display:inline-block;margin-top:4px;color:#39ff14;font-weight:700;text-decoration:none}
-.instr-pic{max-width:420px;background:#fff}
-.instr-pic img{object-fit:contain}
-
-/* Схемы к шагам инструкций */
-.card.stp .sk{grid-column:1/-1;margin-top:10px;background:#0b1626;border-radius:10px;padding:8px}
-.card.stp .sk svg{display:block;width:100%;max-width:300px;height:auto;margin:0 auto}
-
-/* Неисправности, которые можно отметить: отмеченные уходят в сообщение WhatsApp */
+/* ── Неисправности: отмеченные уходят в сообщение WhatsApp ── */
 .checks.pick li{display:block}
-.checks.pick label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.checks.pick label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--glass);color:var(--text);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .checks.pick input{position:absolute;opacity:0;width:1px;height:1px}
-.checks.pick .i{flex:none;border:2px solid #b8c4d0;border-radius:6px;color:transparent;padding:1px;box-sizing:border-box}
-.checks.pick input:checked+.i{background:var(--acc);border-color:var(--acc);color:#fff}
-.checks.pick label:has(input:checked){border-color:var(--acc);background:#eefbe9}
+.checks.pick .i{flex:none;margin-top:1px;padding:1px;border:2px solid #5b6b85;border-radius:7px;color:transparent}
+.checks.pick input:checked+.i{background:var(--acc);border-color:var(--acc);color:var(--acc-on)}
+.checks.pick label:has(input:checked){border-color:rgba(74,222,128,.6);background:rgba(74,222,128,.1)}
 .checks.pick input:focus-visible+.i{outline:2px solid var(--acc);outline-offset:2px}
-/* Лента фото в первом экране */
-.hero .gal{align-self:center}
 
-/* Сворачиваемые разделы «Работы и услуги» */
-details.fold>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;-webkit-tap-highlight-color:transparent}
+/* ── Раскрывающиеся разделы ── */
+details.fold>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border:1px solid var(--line);border-radius:18px;background:var(--glass);cursor:pointer;-webkit-tap-highlight-color:transparent}
 details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary h2{margin:0}
 details.fold>summary::after{content:"";flex:none;width:26px;height:26px;background:var(--acc);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .2s}
 details.fold[open]>summary::after{transform:rotate(180deg)}
-details.fold[open]>summary{margin-bottom:12px}
-/* Перелистывание страниц пальцем: соседняя страница выезжает следом */
-#peek{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg,#f2f5f8);overflow:hidden;pointer-events:none;will-change:transform;box-shadow:0 0 24px #0003}
+details.fold[open]>summary{margin-bottom:14px}
+
+/* ── Вопросы ── */
+.faq details{margin:0 0 8px;padding:0 16px;border:1px solid var(--line);border-radius:16px;background:var(--glass)}
+.faq summary{padding:13px 0;font-weight:700;font-size:15.5px;color:var(--text);cursor:pointer}
+.faq summary::marker{color:var(--acc)}
+.faq p{margin:0 0 14px;color:var(--soft);font-size:14.5px}
+
+/* ── Заказ и контакты ── */
+.cta{margin-top:40px;padding:28px 18px;text-align:center;border-radius:28px;border:1px solid rgba(74,222,128,.35);background:linear-gradient(160deg,rgba(34,197,94,.18),rgba(99,102,241,.16))}
+.cta .sub{margin-bottom:16px;color:var(--soft)}
+.cta .btns{justify-content:center}
+.contacts{margin:16px 0 0;color:var(--muted);font-size:14.5px}
+.contacts a{color:var(--text)}
+footer{margin-top:40px;padding:20px 0 26px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:13.5px;line-height:2.1}
+footer a{color:var(--muted)}
+footer a:hover{color:#fff}
+footer a{padding:9px 0}
+@media(max-width:600px){section{padding-top:32px}}
+
+/* ── Нижняя панель на телефоне: WhatsApp и круглая кнопка звонка ── */
+.dock{display:none}
+@media(max-width:760px){
+ body{padding-bottom:84px}
+ .dock{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px calc(12px + env(safe-area-inset-bottom));background:rgba(8,16,32,.9);border-top:1px solid rgba(255,255,255,.08);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+ .dock .btn{min-height:52px}
+ .dock .btn.main{flex:1}
+ .dock .btn.call{flex:none;width:52px;padding:0;border-radius:50%}
+ /* Кнопки первого экрана дублируют нижнюю панель — на телефоне их не показываем */
+ .hero .btns{display:none}
+}
+
+/* ── Страница «Инструкции» ── */
+.instr{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.instr li{display:flex;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:18px;background:var(--glass);line-height:1.5}
+.instr li>div{min-width:0}
+.instr .ithumb{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#f1f5f9;border-radius:12px}
+.instr .howto{padding:5px 0;font-size:15px;color:var(--acc);font-weight:600}
+.instr .more{margin-left:2px;padding:10px 4px;font-size:13px;color:var(--muted)}
+.instr-pic{max-width:420px;background:#fff}
+.instr-pic img{object-fit:contain}
+
+/* ── Перелистывание страниц пальцем: соседняя страница выезжает следом ── */
+#peek{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg);overflow:hidden;pointer-events:none;will-change:transform;box-shadow:0 0 30px rgba(0,0,0,.5)}
 #peek .wrap{padding-top:16px}
 main.swiping{will-change:transform}
 
-/* Кнопка инструкции под «Узнать стоимость» */
-.prod .btn+.btn{margin-top:8px}
-
-/* Несколько инструкций под одним фото — каждая своей строкой */
-.gal figcaption .howto{display:block}
-
-/* Шапка, вариант А: один зелёный, без неона и рамок */
-.brand-ico{box-shadow:0 0 0 1px #ffffff1a}
-.nav a{color:#c3cfdb}
-.nav a:hover,.nav a.on{color:#fff}
-.langs button{border-color:transparent;color:#8fa1b4}
-.langs button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
-.gal figcaption .howto{color:#5fd38a}
-@media(max-width:1100px){
- .nav:not(.open) a{border:0;border-radius:0;padding:8px 10px;background:none}
- .nav:not(.open) a.on{background:none;color:#fff;box-shadow:inset 0 -2px 0 #2fae55}
- .nav.open a.on{color:#fff}
-}
-
-/* Ссылки на инструкции под фото: удобная зона нажатия для пальца */
-.gal figcaption .howto{display:block;padding:9px 0;line-height:1.35;border-top:1px solid #ffffff14}
-.gal figcaption .howto:first-of-type{margin-top:6px}
-
-/* Главная: ссылка на политику приложения (пока App Store ведёт на корень сайта) */
-.policy-bar{margin:14px 0 0;padding:10px 14px;border:1px solid #dde5ec;border-radius:12px;background:#fff;font-size:15px}
-.policy-bar a{font-weight:600;color:#16702f}
-
-/* Страница «Инструкции» */
-.instr{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.instr li{background:#fff;border:1px solid #dde5ec;border-radius:12px;padding:12px 14px;line-height:1.5}
-.instr .howto{padding:5px 0;color:#16702f;font-weight:600}
-.instr .more{font-size:13px;color:#55667a;margin-left:2px;padding:10px 4px}
-
-/* Справочник инструкций: фото слева от названия */
-.instr li{display:flex;gap:12px;align-items:center}
-.instr .ithumb{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid #eef2f6}
-.instr li>div{min-width:0}
-
-/* Кнопка App Store под значком приложения: на телефоне — отдельной строкой во всю ширину */
-.appicon{flex-wrap:wrap}
-.appicon .store{flex:1 1 100%;width:100%;margin-top:4px}
-.appicon .soon{flex:1 1 100%;font-size:13px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}details.fold>summary::after{transition:none}}
