@@ -179,7 +179,7 @@ h2+.grid,h2+.checks{margin-top:14px}
 .shots figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
 
 /* ── Лента фото оборудования: листается пальцем ── */
-.gal{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,300px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.gal{display:grid;grid-auto-flow:column;align-items:start;grid-auto-columns:minmax(240px,300px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .gal figure{margin:0;scroll-snap-align:start;border-radius:20px;overflow:hidden;background:var(--glass);border:1px solid var(--line)}
 .gal img{display:block;width:100%;aspect-ratio:4/3;height:auto;object-fit:cover}
 .gal figure.k img{object-fit:contain;background:#f1f5f9;padding:8px}
