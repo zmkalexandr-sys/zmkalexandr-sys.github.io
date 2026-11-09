@@ -22,17 +22,27 @@
  /* Фирменные переходы цвета: зелёный → бирюзовый, как свечение кнопки «Открыть» */
  --grad:linear-gradient(120deg,#4ade80 0%,#2dd4bf 55%,#22d3ee 100%);
  --grad-btn:linear-gradient(135deg,#6ee7a0 0%,#34d399 45%,#2dd4bf 100%);
+ --glow:rgba(34,197,94,.20);      /* цвет свечения в левом верхнем углу — цвет раздела */
  --hdr:rgba(8,16,32,.86)
 }
+/* ── Цвет раздела: у каждой услуги свой, как её значок в списке «Услуги» и пункт ленты.
+   Меняются выделение в заголовке, плашка, ссылки, значки, галочки и свечение фона.
+   Кнопка WhatsApp везде остаётся зелёной. Главная и служебные страницы — зелёно-бирюзовые. ── */
+html[data-p=shlagbaum]{--acc:#a3e635;--acc2:#bef264;--acc-on:#1a2e05;--grad:linear-gradient(120deg,#bef264 0%,#a3e635 45%,#4ade80 100%);--glow:rgba(163,230,53,.17)}
+html[data-p=vorota],html[data-p=raspashnye],html[data-p=otkatnye]{--acc:#c4b5fd;--acc2:#ddd6fe;--acc-on:#2e1065;--grad:linear-gradient(120deg,#ddd6fe 0%,#c4b5fd 45%,#a5b4fc 100%);--glow:rgba(139,92,246,.24)}
+html[data-p=pulty]{--acc:#67e8f9;--acc2:#a5f3fc;--acc-on:#083344;--grad:linear-gradient(120deg,#a5f3fc 0%,#67e8f9 45%,#7dd3fc 100%);--glow:rgba(34,211,238,.18)}
+html[data-p=domofon]{--acc:#93c5fd;--acc2:#bfdbfe;--acc-on:#172554;--grad:linear-gradient(120deg,#bfdbfe 0%,#93c5fd 45%,#a5b4fc 100%);--glow:rgba(59,130,246,.22)}
+html[data-p=petli]{--acc:#fde047;--acc2:#fef08a;--acc-on:#422006;--grad:linear-gradient(120deg,#fef08a 0%,#fde047 45%,#fbbf24 100%);--glow:rgba(234,179,8,.17)}
+html[data-p=instrukcii]{--acc:#fda4af;--acc2:#fecdd3;--acc-on:#4c0519;--grad:linear-gradient(120deg,#fecdd3 0%,#fda4af 45%,#f9a8d4 100%);--glow:rgba(244,114,182,.18)}
 *{box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth;scroll-padding-top:76px}
 body{margin:0;color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 /* Мягкое свечение фона, как в приложении (под всем содержимым) */
 /* Свечение ярче и многоцветнее: зелёный, бирюзовый, индиго, фиолетовый — мягко, без пятен */
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 40% at 0% 0%,rgba(34,197,94,.20),transparent 70%),radial-gradient(45% 32% at 100% 6%,rgba(34,211,238,.13),transparent 70%),radial-gradient(60% 45% at 100% 100%,rgba(129,140,248,.22),transparent 70%),radial-gradient(45% 35% at 0% 88%,rgba(192,132,252,.12),transparent 70%)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 40% at 0% 0%,var(--glow),transparent 70%),radial-gradient(45% 32% at 100% 6%,rgba(34,211,238,.13),transparent 70%),radial-gradient(60% 45% at 100% 100%,rgba(129,140,248,.22),transparent 70%),radial-gradient(45% 35% at 0% 88%,rgba(192,132,252,.12),transparent 70%)}
 ::selection{background:rgba(74,222,128,.35)}
 /* Ссылки в тексте: тонкое подчёркивание с отступом — аккуратнее стандартного */
-a{color:var(--acc);text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(74,222,128,.45)}
+a{color:var(--acc);text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(74,222,128,.45);text-decoration-color:color-mix(in srgb,var(--acc) 45%,transparent)}
 a:hover{color:var(--acc2);text-decoration-color:currentColor}
 :focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 html[data-l=ru] [lang=kk],html[data-l=ru] [lang=en],html[data-l=kk] [lang=ru],html[data-l=kk] [lang=en],html[data-l=en] [lang=ru],html[data-l=en] [lang=kk]{display:none}
@@ -66,7 +76,17 @@ header{position:sticky;top:0;z-index:50;background:var(--hdr);-webkit-backdrop-f
  .nav::-webkit-scrollbar{display:none}
  .nav a{flex:none;display:inline-flex;align-items:center;min-height:38px;padding:7px 15px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.04);color:var(--soft);font-size:14.5px;font-weight:600;scroll-snap-align:start;transition:background .15s,border-color .15s,color .15s}
  .nav a:hover{background:rgba(255,255,255,.08);color:#fff}
- .nav a.on{background:var(--grad);border-color:transparent;border-radius:999px;color:var(--acc-on);box-shadow:0 4px 16px rgba(45,212,191,.28)}
+ .nav a.on{background:var(--grad);border-color:transparent;border-radius:999px;color:var(--acc-on);box-shadow:0 4px 16px rgba(45,212,191,.28);box-shadow:0 4px 16px color-mix(in srgb,var(--acc) 30%,transparent)}
+ /* Цветная точка раздела перед названием — те же цвета, что у страниц разделов */
+ .nav a::before{content:"";flex:none;width:7px;height:7px;margin-right:8px;border-radius:50%;background:var(--dot,#4ade80);box-shadow:0 0 8px var(--dot,#4ade80)}
+ .nav a[href^="shlagbaum"]{--dot:#a3e635}
+ .nav a[href^="vorota"]{--dot:#c4b5fd}
+ .nav a[href^="pulty"]{--dot:#67e8f9}
+ .nav a[href^="domofon"]{--dot:#93c5fd}
+ .nav a[href^="petli"]{--dot:#fde047}
+ .nav a[href^="instrukcii"]{--dot:#fda4af}
+ .nav a[href^="#"]{--dot:#e2e8f0}
+ .nav a.on::before{background:var(--acc-on);box-shadow:none}
 }
 /* Главная: ссылка на политику приложения — тонкой строкой (обязательна до обновления iOS) */
 .policy-bar{display:flex;flex-wrap:wrap;align-items:center;gap:0 18px;margin:10px 0 0;font-size:0}
@@ -112,8 +132,8 @@ h1 em{font-style:normal;color:var(--acc);background:var(--grad);-webkit-backgrou
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;border-radius:999px;font:700 15px/1.2 system-ui,sans-serif;text-decoration:none;color:#fff;border:1px solid var(--line2);background:rgba(255,255,255,.03);transition:background .15s,border-color .15s,box-shadow .2s,transform .15s}
 .btn:hover{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.07)}
 /* Главная кнопка — перелив и мягкое свечение, как кнопка «Открыть» в приложении */
-.btn.main{background:var(--grad-btn);border-color:transparent;color:var(--acc-on);box-shadow:0 8px 22px rgba(52,211,153,.26)}
-.btn.main:hover{background:var(--grad-btn);color:var(--acc-on);box-shadow:0 10px 28px rgba(52,211,153,.4);transform:translateY(-1px)}
+.btn.main{background:var(--grad-btn);border-color:transparent;color:#052e16;box-shadow:0 8px 22px rgba(52,211,153,.26)}
+.btn.main:hover{background:var(--grad-btn);color:#052e16;box-shadow:0 10px 28px rgba(52,211,153,.4);transform:translateY(-1px)}
 .btn:active{transform:none}
 
 /* ── Разделы ── */
@@ -129,7 +149,7 @@ h2+.grid,h2+.checks{margin-top:14px}
 .card{background:var(--glass);border:1px solid var(--line);border-radius:20px;padding:16px 18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
 .card h3{margin:8px 0 4px;font-size:17px;line-height:1.3}
 .card p{margin:0;color:var(--soft);font-size:14.5px}
-.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(74,222,128,.22),rgba(34,211,238,.14));color:var(--acc);box-shadow:inset 0 0 0 1px rgba(74,222,128,.18)}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(74,222,128,.22),rgba(34,211,238,.14));background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 24%,transparent),color-mix(in srgb,var(--acc) 9%,transparent));color:var(--acc);box-shadow:inset 0 0 0 1px rgba(74,222,128,.18)}
 .ico.num{font:800 17px system-ui,sans-serif}
 /* Карточка со значком: значок слева, текст справа */
 .card:has(>.ico){display:grid;grid-template-columns:40px 1fr;column-gap:14px;align-items:start}
@@ -151,6 +171,8 @@ h2+.grid,h2+.checks{margin-top:14px}
 .svc::after{content:"";flex:none;width:18px;height:18px;background:var(--muted);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
 .card.svc:hover{border-color:rgba(74,222,128,.5);background:var(--glass2);color:var(--text);transform:translateY(-1px)}
 /* У каждой услуги свой цвет значка и рамки при наведении */
+.svc[href="shlagbaum.html"] .ico{background:linear-gradient(135deg,rgba(163,230,53,.26),rgba(74,222,128,.12));color:#a3e635;box-shadow:inset 0 0 0 1px rgba(163,230,53,.2)}
+.svc[href="shlagbaum.html"]:hover{border-color:rgba(163,230,53,.55)}
 .svc[href="vorota.html"] .ico{background:linear-gradient(135deg,rgba(167,139,250,.26),rgba(129,140,248,.14));color:var(--violet);box-shadow:inset 0 0 0 1px rgba(167,139,250,.2)}
 .svc[href="vorota.html"]:hover{border-color:rgba(167,139,250,.55)}
 .svc[href="pulty.html"] .ico{background:linear-gradient(135deg,rgba(103,232,249,.24),rgba(56,189,248,.12));color:var(--cyan);box-shadow:inset 0 0 0 1px rgba(103,232,249,.2)}
@@ -208,7 +230,7 @@ h2+.grid,h2+.checks{margin-top:14px}
 /* ── Лента фото оборудования: листается пальцем ── */
 .gal{display:grid;grid-auto-flow:column;align-items:start;grid-auto-columns:minmax(240px,300px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .gal figure{margin:0;scroll-snap-align:start;border-radius:20px;overflow:hidden;background:var(--glass);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .15s}
-.gal figure:hover{border-color:rgba(74,222,128,.4)}
+.gal figure:hover{border-color:rgba(74,222,128,.4);border-color:color-mix(in srgb,var(--acc) 45%,transparent)}
 .gal img{display:block;width:100%;aspect-ratio:4/3;height:auto;object-fit:cover}
 .gal figure.k img{object-fit:contain;background:#f1f5f9;padding:8px}
 .gal figcaption{padding:10px 14px 12px;font-size:14px;line-height:1.4;color:#e2e8f0}
@@ -228,7 +250,7 @@ h2+.grid,h2+.checks{margin-top:14px}
 .checks.pick input{position:absolute;opacity:0;width:1px;height:1px}
 .checks.pick .i{flex:none;margin-top:1px;padding:1px;border:2px solid #5b6b85;border-radius:7px;color:transparent}
 .checks.pick input:checked+.i{background:var(--acc);border-color:var(--acc);color:var(--acc-on)}
-.checks.pick label:has(input:checked){border-color:rgba(74,222,128,.6);background:rgba(74,222,128,.1)}
+.checks.pick label:has(input:checked){border-color:rgba(74,222,128,.6);background:rgba(74,222,128,.1);border-color:color-mix(in srgb,var(--acc) 60%,transparent);background:color-mix(in srgb,var(--acc) 10%,transparent)}
 .checks.pick input:focus-visible+.i{outline:2px solid var(--acc);outline-offset:2px}
 
 /* ── Раскрывающиеся разделы ── */
@@ -241,7 +263,7 @@ details.fold[open]>summary{margin-bottom:14px}
 
 /* ── Вопросы ── */
 .faq details{margin:0 0 8px;padding:0 16px;border:1px solid var(--line);border-radius:16px;background:var(--glass);transition:border-color .15s,background .15s}
-.faq details[open]{border-color:rgba(74,222,128,.35);background:linear-gradient(160deg,rgba(74,222,128,.07),rgba(34,211,238,.03))}
+.faq details[open]{border-color:rgba(74,222,128,.35);background:linear-gradient(160deg,rgba(74,222,128,.07),rgba(34,211,238,.03));border-color:color-mix(in srgb,var(--acc) 35%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 8%,transparent),transparent)}
 .faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;font-weight:700;font-size:15.5px;color:var(--text);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .faq summary::-webkit-details-marker{display:none}
 /* Вместо треугольника браузера — аккуратная стрелка справа, как у раздела «Услуги» */
