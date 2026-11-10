@@ -1,17 +1,25 @@
 <!doctype html>
 <!--
   Страница ссылок ZMK: https://zmkalexandr-sys.github.io/z/#<данные>
-  Сюда попадает человек, который нажал ссылку ZMK (приглашение, ответ, пропуск)
-  в мессенджере, и она открылась в браузере, а не в приложении.
+
+  1. Пропуск гостя или курьера («#g…», прошивка ворот r18d и новее): кнопка
+     «Открыть» — Android, Chrome, Bluetooth прямо из браузера, без приложения.
+     Первое открытие привязывает ссылку к этому телефону; пересланная ссылка
+     на другом телефоне не откроет.
+  2. Остальные ссылки ZMK (приглашение, ответ, пропуск жильца, бюллетень)
+     открываются в приложении — здесь только «Скопировать ссылку».
 
   БЕЗОПАСНОСТЬ. Всё, что после «#», браузер на сайт не отправляет. Страница
-  ничего не грузит с других сайтов, без счётчиков и аналитики: данные ссылки
-  остаются только в этом браузере. Копирование — только по нажатию кнопки.
+  ничего не грузит с других сайтов (CSP ниже), без счётчиков и аналитики:
+  данные ссылки остаются в этом браузере. Ключ телефона гостя — неизвлекаемый
+  ключ WebCrypto в хранилище браузера. Код обмена — zmk-guest.js (раздел 7.3
+  docs/arhitektura-propuskov.md), экран — z.js.
 -->
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#081020">
@@ -19,7 +27,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <style>
   /* Тёмное оформление в стиле сайта и приложения ZMK (цвета — как в zmk.css). */
-  :root{color-scheme:dark;--bg:#081020;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.12);--line2:rgba(255,255,255,.22);--text:#eef3f9;--soft:#c7d2e3;--muted:#8a9bb5;--acc:#4ade80;--acc2:#86efac;--acc-on:#052e16;--hdr:rgba(8,16,32,.86);--red:#fca5a5}
+  :root{color-scheme:dark;--bg:#081020;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.12);--line2:rgba(255,255,255,.22);--text:#eef3f9;--soft:#c7d2e3;--muted:#8a9bb5;--acc:#4ade80;--acc2:#86efac;--acc-on:#052e16;--hdr:rgba(8,16,32,.86);--red:#fca5a5;--amber:#fcd34d}
   *{box-sizing:border-box}
   html{background:var(--bg)}
   body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,rgba(74,222,128,.10),transparent 60%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
@@ -32,15 +40,25 @@
   p{margin:0 0 10px;color:var(--soft)}
   ol{margin:0 0 16px;padding-left:22px;color:var(--soft)}
   li{margin-bottom:6px}
-  b{white-space:nowrap;color:var(--text)}
+  b{color:var(--text)}
   a{color:var(--acc)}
+  [hidden]{display:none !important}
   .btn{display:block;width:100%;min-height:52px;border:1px solid var(--acc);border-radius:999px;padding:14px 18px;font-family:inherit;font-size:17px;font-weight:700;line-height:1.2;cursor:pointer;background:var(--acc);color:var(--acc-on);text-align:center;text-decoration:none}
   .btn:active{background:var(--acc2);border-color:var(--acc2)}
+  .btn:disabled{opacity:.5;cursor:default}
   .btn2{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--line2);margin-top:10px}
   .btn2:active{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.4)}
+  .big{min-height:76px;font-size:22px;letter-spacing:.02em}
   .note{color:var(--muted);font-size:14px;margin-top:10px;min-height:1.5em}
   .ok{color:var(--acc)}
   .bad{color:var(--red)}
+  .warn{color:var(--amber)}
+  .badge{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--acc-on);background:var(--acc);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+  .gname{font-size:18px;color:var(--text);margin:0 0 4px}
+  .until{color:var(--soft);margin:0 0 14px}
+  .state{font-size:18px;font-weight:600;margin:14px 0 0;min-height:1.6em}
+  .state.ok::before{content:"✓ "}
+  .small{color:var(--muted);font-size:13px;margin:12px 0 0}
   .lang p{color:var(--muted);font-size:14px}
   .lang h2{color:var(--text);font-size:15px}
   p.lang{color:var(--muted);font-size:14px}
@@ -50,7 +68,25 @@
 <body>
 <header><a href="/sos.html" aria-label="ZMK"><img src="/zmk-logo.svg" alt="ZMK" width="120" height="40"></a></header>
 <main>
-  <section class="card">
+  <!-- Пропуск гостя / курьера -->
+  <section class="card" id="guest" hidden>
+    <span class="badge" id="gkind">Пропуск</span>
+    <h1 id="gtitle">Открыть ворота</h1>
+    <p class="gname" id="gname" hidden></p>
+    <p class="until" id="guntil"></p>
+    <ol id="gsteps">
+      <li>Подойдите к воротам и включите <b>Bluetooth</b>.</li>
+      <li>Нажмите <b>«Открыть»</b> и выберите в списке <b id="gble">ворота ZMK</b>.</li>
+    </ol>
+    <button class="btn big" id="gopen" type="button" disabled>Открыть</button>
+    <p class="state" id="gstate" role="status" aria-live="polite"></p>
+    <button class="btn btn2" id="gcopy" type="button" hidden>Скопировать ссылку</button>
+    <p class="small" id="gonce">Ссылка работает на одном телефоне — на том, где ворота откроют первый раз.</p>
+    <p class="small" lang="kk">Қақпаны ашу: Bluetooth қосыңыз, «Открыть» батырмасын басып, тізімнен қақпаны таңдаңыз.</p>
+  </section>
+
+  <!-- Остальные ссылки: в приложение -->
+  <section class="card" id="copyview">
     <h1>Ссылка ZMK</h1>
     <p id="lead">Эта ссылка открывается в приложении ZMK, а не в браузере.</p>
     <ol id="steps">
@@ -62,12 +98,12 @@
     <a class="btn btn2" href="https://play.google.com/store/apps/details?id=kz.zmk.gate" rel="noreferrer">Нет приложения? ZMK в Google Play</a>
   </section>
 
-  <section class="card lang" lang="kk">
+  <section class="card lang" lang="kk" id="kkview">
     <h2>ZMK сілтемесі</h2>
     <p>Бұл сілтеме браузерде емес, ZMK қосымшасында ашылады. «Скопировать ссылку» батырмасын басыңыз, содан кейін ZMK қосымшасында: «Құрылғы қосу» → «ZMK сілтемесі бар» → «Қою».</p>
   </section>
 
-  <section class="card lang" lang="en">
+  <section class="card lang" lang="en" id="enview">
     <h2>ZMK link</h2>
     <p>This link opens in the ZMK app, not in the browser. Tap “Скопировать ссылку” (copy link), then in the ZMK app: “Add a device” → “I have a ZMK link” → “Paste”.</p>
   </section>
@@ -75,50 +111,7 @@
   <p class="lang">Вопросы: <a href="https://wa.me/77072669154" rel="noreferrer">WhatsApp +7 707 266 91 54</a></p>
   <textarea id="raw" aria-hidden="true" tabindex="-1" readonly></textarea>
 </main>
-<script>
-(function () {
-  "use strict";
-  var link = location.href;
-  var msg = document.getElementById("msg");
-  var btn = document.getElementById("copy");
-  var raw = document.getElementById("raw");
-
-  /** Ссылка без данных после «#» — копировать нечего. */
-  if (!location.hash || location.hash.length < 2) {
-    btn.disabled = true;
-    btn.style.opacity = "0.5";
-    msg.className = "note bad";
-    msg.textContent = "Ссылка неполная — попросите прислать её заново целиком.";
-    return;
-  }
-
-  function done(ok) {
-    msg.className = ok ? "note ok" : "note bad";
-    msg.textContent = ok
-      ? "Скопировано. Теперь откройте ZMK → «Добавить устройство» → «Есть ссылка ZMK» → «Вставить»."
-      : "Не удалось скопировать. Нажмите и удерживайте адрес в строке браузера → «Копировать».";
-  }
-
-  /** Запасной путь для старых браузеров: выделить текст и скопировать. */
-  function fallback() {
-    try {
-      raw.value = link;
-      raw.select();
-      raw.setSelectionRange(0, link.length);
-      done(document.execCommand("copy"));
-    } catch (e) {
-      done(false);
-    }
-  }
-
-  btn.addEventListener("click", function () {
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(link).then(function () { done(true); }, fallback);
-    } else {
-      fallback();
-    }
-  });
-})();
-</script>
+<script src="zmk-guest.js"></script>
+<script src="z.js"></script>
 </body>
 </html>
