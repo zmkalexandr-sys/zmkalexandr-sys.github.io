@@ -318,7 +318,7 @@ main.swiping{will-change:transform}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}details.fold>summary::after,.faq summary::after{transition:none}*{transition-duration:0s!important}}
 /* Фото SOS-детектора: лента без обрезки — одинаковая высота, ширина по пропорциям снимка */
-.galh{margin:24px 0 12px;font-size:18px}
 .gal.free{grid-auto-columns:max-content}
 .gal.free figure{width:min-content}
-.gal.free img{width:auto;height:min(320px,64vw);aspect-ratio:auto;object-fit:contain}
+.gal.free img{width:auto;height:min(240px,52vw);aspect-ratio:auto;object-fit:contain}
+.hero .gal.free{margin:0 0 18px}
